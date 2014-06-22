@@ -8,8 +8,14 @@
 
 #import <UIKit/UIKit.h>
 
+#import <AVFoundation/AVAudioPlayer.h>
+
 @interface Test1AppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
+
+@property AVAudioPlayer *appSoundPlayer;
+
+@property NSURL *soundFileURL;
 
 @end

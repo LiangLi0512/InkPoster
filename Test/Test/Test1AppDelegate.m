@@ -8,6 +8,8 @@
 
 #import "Test1AppDelegate.h"
 
+#import <AVFoundation/AVFoundation.h>
+
 @implementation Test1AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
@@ -16,6 +18,33 @@
     // Override point for customization after application launch.
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
+    
+    NSString *soundFilePath =[[NSBundle mainBundle] pathForResource:@"test" ofType:@"mp3"];
+    NSURL *newURL = [[NSURL alloc] initFileURLWithPath:soundFilePath];
+    self.soundFileURL = newURL;
+//    [newURL release];
+//    [[AVAudioSession sharedInstance] setDelegate: self];
+    
+    AVAudioPlayer *newPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:_soundFileURL error:nil];
+    self.appSoundPlayer = newPlayer;
+//    [newPlayer release];
+    [_appSoundPlayer prepareToPlay];
+    [_appSoundPlayer play];
+    
+    
+    
+    AVAudioSession *audioSession = [AVAudioSession sharedInstance];
+    NSError *err = NULL;
+    [audioSession setCategory:AVAudioSessionCategoryPlayAndRecord error:&err];
+    
+    if (err) {
+        NSLog(@"There was an error creating the audio session");
+    }
+    [audioSession overrideOutputAudioPort:AVAudioSessionPortOverrideSpeaker error:NULL];
+    
+    if (err) {
+        NSLog(@"There was an error seding the audio to the speakers");
+    }
     return YES;
 }
 
