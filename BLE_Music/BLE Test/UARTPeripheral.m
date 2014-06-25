@@ -87,6 +87,7 @@
     
     [_peripheral discoverServices:@[self.class.uartServiceUUID, self.class.deviceInformationServiceUUID]];
     
+    
 }
 
 

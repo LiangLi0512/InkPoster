@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "HelpViewController.h"
+#import <AVFoundation/AVAudioPlayer.h>
 
 @protocol UARTViewControllerDelegate <NSObject, HelpViewControllerDelegate>
 
@@ -41,6 +42,9 @@ typedef enum {
 @property (nonatomic, assign) BOOL                              keyboardIsShown;
 @property (strong, nonatomic) NSAttributedString                *consoleAsciiText;
 @property (strong, nonatomic) NSAttributedString                *consoleHexText;
+@property (strong, nonatomic) UIWindow *window;
+@property AVAudioPlayer *appSoundPlayer;
+@property NSURL *soundFileURL;
 
 - (id)initWithDelegate:(id<UARTViewControllerDelegate>)aDelegate;
 - (IBAction)clearConsole:(id)sender;
