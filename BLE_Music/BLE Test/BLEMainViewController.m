@@ -188,6 +188,18 @@
         _connectionMode = ConnectionModeUART;
     }
     else return;
+    NSString *soundFilePath =[[NSBundle mainBundle] pathForResource:@"test" ofType:@"mp3"];
+    NSURL *newURL = [[NSURL alloc] initFileURLWithPath:soundFilePath];
+    self.soundFileURL = newURL;
+    //    [newURL release];
+    //    [[AVAudioSession sharedInstance] setDelegate: self];
+
+    AVAudioPlayer *newPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:_soundFileURL error:nil];
+    
+    self.appSoundPlayer = newPlayer;
+    //    [newPlayer release];
+    [_appSoundPlayer prepareToPlay];
+    [_appSoundPlayer play];
     
     _connectionStatus = ConnectionStatusScanning;
     
