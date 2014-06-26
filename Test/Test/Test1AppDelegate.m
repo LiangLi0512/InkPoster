@@ -32,7 +32,7 @@
     [_appSoundPlayer play];
     
     
-    
+/*
     AVAudioSession *audioSession = [AVAudioSession sharedInstance];
     NSError *err = NULL;
     [audioSession setCategory:AVAudioSessionCategoryPlayAndRecord error:&err];
@@ -45,6 +45,7 @@
     if (err) {
         NSLog(@"There was an error seding the audio to the speakers");
     }
+ */
     return YES;
 }
 

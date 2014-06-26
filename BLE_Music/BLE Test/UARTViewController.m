@@ -9,7 +9,6 @@
 #import "UARTViewController.h"
 #import "NSString+hex.h"
 #import "NSData+hex.h"
-#import "Test1AppDelegate.h"
 #import <AVFoundation/AVFoundation.h>
 
 #define kKeyboardAnimationDuration 0.3f
@@ -182,22 +181,23 @@
     NSMutableAttributedString *newASCIIText = [[NSMutableAttributedString alloc] initWithAttributedString:_consoleAsciiText];
     [newASCIIText appendAttributedString:attrString];
     _consoleAsciiText = newASCIIText;
-    
+
     ///Lei
     NSString *soundFilePath =[[NSBundle mainBundle] pathForResource:@"test" ofType:@"mp3"];
     NSURL *newURL = [[NSURL alloc] initFileURLWithPath:soundFilePath];
     self.soundFileURL = newURL;
     //    [newURL release];
     //    [[AVAudioSession sharedInstance] setDelegate: self];
-    
+
     AVAudioPlayer *newPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:_soundFileURL error:nil];
+
     self.appSoundPlayer = newPlayer;
     //    [newPlayer release];
     [_appSoundPlayer prepareToPlay];
     [_appSoundPlayer play];
+  
     
-    
-    
+/*
     AVAudioSession *audioSession = [AVAudioSession sharedInstance];
     NSError *err = NULL;
     [audioSession setCategory:AVAudioSessionCategoryPlayAndRecord error:&err];
@@ -211,7 +211,7 @@
         NSLog(@"There was an error seding the audio to the speakers");
     }
     ///Lei
-    
+*/
     //Update Hex text
     NSString *newHexString = [newData hexRepresentationWithSpaces:YES];
     attrString = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"%@", newHexString]      //no line breaks in Hex mode

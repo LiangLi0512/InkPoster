@@ -42,7 +42,7 @@ typedef enum {
 @property (nonatomic, assign) BOOL                              keyboardIsShown;
 @property (strong, nonatomic) NSAttributedString                *consoleAsciiText;
 @property (strong, nonatomic) NSAttributedString                *consoleHexText;
-@property (strong, nonatomic) UIWindow *window;
+//@property (strong, nonatomic) UIWindow *window;
 @property AVAudioPlayer *appSoundPlayer;
 @property NSURL *soundFileURL;
 
