@@ -366,7 +366,7 @@
     //Receive data from device
     
     [self updateConsoleWithIncomingData:newData];
-    
+    /*
     ///Lei
     NSString *soundFilePath =[[NSBundle mainBundle] pathForResource:@"test" ofType:@"mp3"];
     NSURL *newURL = [[NSURL alloc] initFileURLWithPath:soundFilePath];
@@ -396,7 +396,7 @@
         NSLog(@"There was an error seding the audio to the speakers");
     }
     ///Lei
-    
+    */
 }
 
 
