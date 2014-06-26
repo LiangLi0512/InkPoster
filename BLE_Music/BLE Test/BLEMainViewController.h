@@ -10,6 +10,7 @@
 #import "HelpViewController.h"
 #import "PinIOViewController.h"
 #import "UARTViewController.h"
+#import <AVFoundation/AVAudioPlayer.h>
 
 
 @interface BLEMainViewController : UIViewController <UINavigationControllerDelegate, HelpViewControllerDelegate, CBCentralManagerDelegate, UARTPeripheralDelegate, UARTViewControllerDelegate, PinIOViewControllerDelegate>
@@ -39,6 +40,9 @@ typedef enum {
 @property (strong, nonatomic) IBOutlet HelpViewController       *helpViewController;
 @property (strong, nonatomic) IBOutlet UIView                   *helpView;
 @property (strong, nonatomic) IBOutlet UIImageView              *logo;
+
+@property AVAudioPlayer *appSoundPlayer;
+@property NSURL *soundFileURL;
 
 - (IBAction)showInfo:(id)sender;
 - (IBAction)buttonTapped:(UIButton*)sender;
