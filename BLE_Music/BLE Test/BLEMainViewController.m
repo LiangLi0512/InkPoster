@@ -65,6 +65,9 @@
     
     musicPlayer = [MPMusicPlayerController iPodMusicPlayer];
     
+    //[_volumeSlider setValue:[musicPlayer volume]];
+    
+    
     [self.view setAutoresizesSubviews:YES];
     
     [self addChildViewController:self.navController];
@@ -555,6 +558,22 @@
         [musicPlayer play];
         
     }
+    
+    UIView *myVolumeView = [[UIView alloc] initWithFrame:CGRectMake(30, 500, 260, 20)];
+    myVolumeView.backgroundColor = [UIColor clearColor];
+    [self.view addSubview:myVolumeView];
+    
+    MPVolumeView *volumeView = [[MPVolumeView alloc] initWithFrame: myVolumeView.bounds];
+    [myVolumeView addSubview:volumeView];
 }
+
+- (IBAction)previousSong:(id)sender {
+    [musicPlayer skipToPreviousItem];
+}
+
+- (IBAction)nextSong:(id)sender {
+    [musicPlayer skipToNextItem];
+}
+
 @end
 

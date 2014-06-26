@@ -45,15 +45,14 @@ typedef enum {
 @property (strong, nonatomic) IBOutlet UIImageView              *logo;
 @property (weak, nonatomic) IBOutlet UIButton *playPauseButton;
 
-@property AVAudioPlayer *appSoundPlayer;
-@property NSURL *soundFileURL;
 @property (nonatomic, retain) MPMusicPlayerController *musicPlayer;
 
 - (IBAction)showInfo:(id)sender;
 - (IBAction)buttonTapped:(UIButton*)sender;
 - (void)helpViewControllerDidFinish:(HelpViewController*)controller;
 - (IBAction)playPause:(id)sender;
-//- (void) registerMediaPlayerNotifications;
+- (IBAction)previousSong:(id)sender;
+- (IBAction)nextSong:(id)sender;
 
 @end
 
