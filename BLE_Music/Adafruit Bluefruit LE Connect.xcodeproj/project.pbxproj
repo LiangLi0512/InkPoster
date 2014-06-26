@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		4A51142F195BAF2200C665DB /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A51142E195BAF2200C665DB /* AVFoundation.framework */; };
 		4ABB3E67195C18F2001940FA /* test.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 4ABB3E66195C18F2001940FA /* test.mp3 */; };
+		EBAA2DE2195C928300F9446D /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EBAA2DE1195C928300F9446D /* MediaPlayer.framework */; };
 		F02E54DB18AE94E1006AE85A /* NSData+hex.m in Sources */ = {isa = PBXBuildFile; fileRef = F02E54DA18AE94E1006AE85A /* NSData+hex.m */; };
 		F054948B1893188D007C7284 /* NSString+hex.m in Sources */ = {isa = PBXBuildFile; fileRef = F054948A1893188D007C7284 /* NSString+hex.m */; };
 		F05E7E0318BEF399005E25F6 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F05E7E0218BEF399005E25F6 /* Images.xcassets */; };
@@ -61,6 +62,7 @@
 /* Begin PBXFileReference section */
 		4A51142E195BAF2200C665DB /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		4ABB3E66195C18F2001940FA /* test.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = test.mp3; sourceTree = "<group>"; };
+		EBAA2DE1195C928300F9446D /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
 		F02E54D918AE94E1006AE85A /* NSData+hex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+hex.h"; sourceTree = "<group>"; };
 		F02E54DA18AE94E1006AE85A /* NSData+hex.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+hex.m"; sourceTree = "<group>"; };
 		F05494891893188D007C7284 /* NSString+hex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+hex.h"; sourceTree = "<group>"; };
@@ -129,6 +131,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EBAA2DE2195C928300F9446D /* MediaPlayer.framework in Frameworks */,
 				4A51142F195BAF2200C665DB /* AVFoundation.framework in Frameworks */,
 				F0C47C1F16C23D67002EFADA /* QuartzCore.framework in Frameworks */,
 				F0A2C99D16BBED8F00F2FD12 /* CoreBluetooth.framework in Frameworks */,
@@ -195,6 +198,7 @@
 		F0A2C96816BBE44500F2FD12 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				EBAA2DE1195C928300F9446D /* MediaPlayer.framework */,
 				4A51142E195BAF2200C665DB /* AVFoundation.framework */,
 				F0C47C1E16C23D67002EFADA /* QuartzCore.framework */,
 				F0A2C99C16BBED8E00F2FD12 /* CoreBluetooth.framework */,

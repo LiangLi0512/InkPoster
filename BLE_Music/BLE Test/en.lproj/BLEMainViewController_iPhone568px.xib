@@ -13,6 +13,7 @@
                 <outlet property="menuViewController" destination="0Xc-RC-aZ0" id="VuW-QV-adi"/>
                 <outlet property="navController" destination="Snd-CT-bls" id="UUu-Tv-ICR"/>
                 <outlet property="pinIoButton" destination="IEN-kM-VeC" id="mOo-Us-s3i"/>
+                <outlet property="playPauseButton" destination="a5n-aV-Lml" id="Wz6-pm-CHe"/>
                 <outlet property="uartButton" destination="IMf-hO-2ww" id="fu5-6o-p8A"/>
                 <outlet property="view" destination="1xm-FQ-qRq" id="CQl-yS-mFQ"/>
             </connections>
@@ -70,6 +71,16 @@
                                 <state key="normal" title="UART monitor"/>
                                 <connections>
                                     <action selector="buttonTapped:" destination="-1" eventType="touchUpInside" id="FkI-Tx-uqL"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="a5n-aV-Lml">
+                                <rect key="frame" x="145" y="208" width="31" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Play">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="playPause:" destination="-1" eventType="touchUpInside" id="vOh-LD-KGL"/>
                                 </connections>
                             </button>
                         </subviews>

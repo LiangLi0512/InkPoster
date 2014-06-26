@@ -30,6 +30,7 @@
 
 @implementation BLEMainViewController
 
+@synthesize musicPlayer;
 
 #pragma mark - View Lifecycle
 
@@ -62,6 +63,8 @@
 
     [super viewDidLoad];
     
+    musicPlayer = [MPMusicPlayerController iPodMusicPlayer];
+    
     [self.view setAutoresizesSubviews:YES];
     
     [self addChildViewController:self.navController];
@@ -82,7 +85,7 @@
     UIButton *buttonCopy = [NSKeyedUnarchiver unarchiveObjectWithData: archivedData];
     [buttonCopy addTarget:self action:@selector(showInfo:) forControlEvents:UIControlEventTouchUpInside];
     infoBarButton = [[UIBarButtonItem alloc]initWithCustomView:buttonCopy];
-    
+
 }
 
 
@@ -187,19 +190,6 @@
         NSLog(@"Starting UART Mode …");
         _connectionMode = ConnectionModeUART;
     }
-    else return;
-    NSString *soundFilePath =[[NSBundle mainBundle] pathForResource:@"test" ofType:@"mp3"];
-    NSURL *newURL = [[NSURL alloc] initFileURLWithPath:soundFilePath];
-    self.soundFileURL = newURL;
-    //    [newURL release];
-    //    [[AVAudioSession sharedInstance] setDelegate: self];
-
-    AVAudioPlayer *newPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:_soundFileURL error:nil];
-    
-    self.appSoundPlayer = newPlayer;
-    //    [newPlayer release];
-    [_appSoundPlayer prepareToPlay];
-    [_appSoundPlayer play];
     
     _connectionStatus = ConnectionStatusScanning;
     
@@ -557,5 +547,14 @@
 }
 
 
+- (IBAction)playPause:(id)sender {
+    if ([musicPlayer playbackState] == MPMusicPlaybackStatePlaying) {
+        [musicPlayer pause];
+        
+    } else {
+        [musicPlayer play];
+        
+    }
+}
 @end
 

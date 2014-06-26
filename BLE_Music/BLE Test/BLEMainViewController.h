@@ -11,9 +11,12 @@
 #import "PinIOViewController.h"
 #import "UARTViewController.h"
 #import <AVFoundation/AVAudioPlayer.h>
+#import <MediaPlayer/MediaPlayer.h>
 
 
-@interface BLEMainViewController : UIViewController <UINavigationControllerDelegate, HelpViewControllerDelegate, CBCentralManagerDelegate, UARTPeripheralDelegate, UARTViewControllerDelegate, PinIOViewControllerDelegate>
+@interface BLEMainViewController : UIViewController <UINavigationControllerDelegate, HelpViewControllerDelegate, CBCentralManagerDelegate, UARTPeripheralDelegate, UARTViewControllerDelegate, PinIOViewControllerDelegate, MPMediaPickerControllerDelegate> {
+    MPMusicPlayerController *musicPlayer;
+}
 
 typedef enum {
     ConnectionModeNone  = 0,
@@ -40,13 +43,17 @@ typedef enum {
 @property (strong, nonatomic) IBOutlet HelpViewController       *helpViewController;
 @property (strong, nonatomic) IBOutlet UIView                   *helpView;
 @property (strong, nonatomic) IBOutlet UIImageView              *logo;
+@property (weak, nonatomic) IBOutlet UIButton *playPauseButton;
 
 @property AVAudioPlayer *appSoundPlayer;
 @property NSURL *soundFileURL;
+@property (nonatomic, retain) MPMusicPlayerController *musicPlayer;
 
 - (IBAction)showInfo:(id)sender;
 - (IBAction)buttonTapped:(UIButton*)sender;
 - (void)helpViewControllerDidFinish:(HelpViewController*)controller;
+- (IBAction)playPause:(id)sender;
+//- (void) registerMediaPlayerNotifications;
 
 @end
 
