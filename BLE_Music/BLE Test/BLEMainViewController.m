@@ -466,7 +466,15 @@
             
             // by Liang: Too simple, add a tool to filter out the noise.
             if (value >850000000) {
-                [musicPlayer play];
+                //[musicPlayer play];
+                //[self playPause];
+                if ([musicPlayer playbackState] == MPMusicPlaybackStatePlaying) {
+                    [musicPlayer pause];
+                    
+                } else {
+                    [musicPlayer play];
+                    
+                }
             }
             else {
                 [musicPlayer pause];
