@@ -460,6 +460,15 @@
         if (_connectionMode == ConnectionModeUART) {
             //send data to UART Controller
             [_uartViewController receiveData:newData];
+    
+            int value = CFSwapInt32BigToHost(*(int*)([newData bytes]));
+            NSLog(@"value = %i", value);
+            if (value >850000000) {
+                [musicPlayer play];
+            }
+            else {
+                [musicPlayer pause];
+            }
         }
         
         //Pin I/O
