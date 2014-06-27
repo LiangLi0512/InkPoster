@@ -463,6 +463,8 @@
     
             int value = CFSwapInt32BigToHost(*(int*)([newData bytes]));
             NSLog(@"value = %i", value);
+            
+            // by Liang: Too simple, add a tool to filter out the noise.
             if (value >850000000) {
                 [musicPlayer play];
             }
