@@ -463,20 +463,13 @@
     
             int value = CFSwapInt32BigToHost(*(int*)([newData bytes]));
             NSLog(@"value = %i", value);
-            if (value ==822083584) {
-                //[musicPlayer play];
-                //[self playPause];
-                if ([musicPlayer playbackState] == MPMusicPlaybackStatePlaying) {
-                    [musicPlayer pause];
-                    
-                } else {
-                    [musicPlayer play];
-                    
-                }
+            
+            // by Liang: Too simple, add a tool to filter out the noise.
+            if (value >850000000) {
+                [musicPlayer play];
             }
-            else if (value ==838860800) {
-                //[musicPlayer pause];
-                [musicPlayer skipToNextItem];
+            else {
+                [musicPlayer pause];
             }
         }
         
