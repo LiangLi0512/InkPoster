@@ -446,6 +446,12 @@
     
 }
 
+int last_value = 0;
+int sig_flag = 0;
+bool possible_next1 = false;
+bool possible_next2 = false;
+bool possible_previous1 = false;
+bool possible_previous2 = false;
 
 - (void)didReceiveData:(NSData*)newData{
     
@@ -462,10 +468,10 @@
             [_uartViewController receiveData:newData];
     
             int value = CFSwapInt32BigToHost(*(int*)([newData bytes]));
-            NSLog(@"value = %i", value);
-            
+            //NSLog(@"value = %i", value);
+            // Play / Pause
             // by Liang: Too simple, add a tool to filter out the noise.
-            if (value >850000000) {
+            if (value == 822083584) {
                 //[musicPlayer play];
                 //[self playPause];
                 if ([musicPlayer playbackState] == MPMusicPlaybackStatePlaying) {
@@ -473,12 +479,40 @@
                     
                 } else {
                     [musicPlayer play];
-                    
                 }
             }
-            else {
-                [musicPlayer pause];
+            
+            // Next song
+            if (value == 825229312) {
+                possible_next1 = true;
             }
+            if (possible_next1 ==true && value == 825294848) {
+                possible_next2 = true;
+            }
+            if (possible_next2 == true && value == 825360384) {
+                [musicPlayer skipToNextItem];
+                possible_next1 = false;
+                possible_next2 = false;
+                possible_previous1 = false;
+                possible_previous2 = false;
+            }
+            
+            // Previous song
+            if (value == 825360384) {
+                possible_previous1 = true;
+            }
+            if (possible_previous1 == true && value == 825294848) {
+                possible_previous2 = true;
+            }
+            if (possible_previous2 == true && value == 825229312) {
+                [musicPlayer skipToPreviousItem];
+                possible_previous1 = false;
+                possible_previous2 = false;
+                possible_next1 = false;
+                possible_next2 = false;
+            }
+            
+            //last_value=value;
         }
         
         //Pin I/O
