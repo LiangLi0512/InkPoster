@@ -54,5 +54,11 @@ typedef enum {
 - (IBAction)previousSong:(id)sender;
 - (IBAction)nextSong:(id)sender;
 
+extern const int PLAY_MUSCI_SIGNAL;
+extern const int LEFT_PICK_SIGNAL;
+extern const int MIDDLE_PICK_SIGNAL;
+extern const int RIGHT_PICK_SIGNAL;
+
+
 @end
 

@@ -15,6 +15,13 @@
 #define DISCONNECT_TEXT @"Disconnect"
 #define CONNECT_TEXT @"Connect"
 
+#define SWITCH_MUSIC_INTERVAL 1.0
+#define SWITCH_RESET_INTERVAL 2.0
+const int PLAY_MUSCI_SIGNAL = 822083584;
+const int LEFT_PICK_SIGNAL = 825229312;
+const int MIDDLE_PICK_SIGNAL = 825294848;
+const int RIGHT_PICK_SIGNAL = 825360384;
+
 
 @interface BLEMainViewController ()<UIAlertViewDelegate>{
     
@@ -453,6 +460,13 @@ bool possible_next2 = false;
 bool possible_previous1 = false;
 bool possible_previous2 = false;
 
+bool touchedLeft = false;
+bool touchedMiddle = false;
+bool touchedRight = false;
+NSTimeInterval touchLeftTime = 0.0;
+NSTimeInterval touchMiddleTime = 0.0;
+NSTimeInterval touchRightTime = 0.0;
+
 - (void)didReceiveData:(NSData*)newData{
     
     //Data incoming from UART peripheral, forward to current view controller
@@ -468,10 +482,13 @@ bool possible_previous2 = false;
             [_uartViewController receiveData:newData];
     
             int value = CFSwapInt32BigToHost(*(int*)([newData bytes]));
+            NSTimeInterval currentTime = [[NSDate date] timeIntervalSince1970];
             //NSLog(@"value = %i", value);
             // Play / Pause
             // by Liang: Too simple, add a tool to filter out the noise.
-            if (value == 822083584) {
+            
+
+            if (PLAY_MUSCI_SIGNAL == value) {
                 //[musicPlayer play];
                 //[self playPause];
                 if ([musicPlayer playbackState] == MPMusicPlaybackStatePlaying) {
@@ -481,7 +498,7 @@ bool possible_previous2 = false;
                     [musicPlayer play];
                 }
             }
-            
+/*
             // Next song
             if (value == 825229312) {
                 possible_next1 = true;
@@ -511,8 +528,50 @@ bool possible_previous2 = false;
                 possible_next1 = false;
                 possible_next2 = false;
             }
-            
+*/
             //last_value=value;
+            
+            if (currentTime - touchLeftTime > SWITCH_RESET_INTERVAL) {
+                touchedLeft = false;
+            }
+            else if (currentTime - touchMiddleTime > SWITCH_RESET_INTERVAL) {
+                touchedMiddle = false;
+            }
+            else if (currentTime - touchRightTime > SWITCH_RESET_INTERVAL) {
+                touchedRight = false;
+            }
+            
+            if (LEFT_PICK_SIGNAL == value) {
+                touchLeftTime = currentTime;
+                touchedLeft = true;
+            }
+            else if (MIDDLE_PICK_SIGNAL == value) {
+                touchMiddleTime = currentTime;
+                touchedMiddle = true;
+            }
+            else if (RIGHT_PICK_SIGNAL == value) {
+                touchRightTime = currentTime;
+                touchedRight = true;
+            }
+            
+            if (touchedLeft && touchedMiddle && touchedRight) {
+                if (touchMiddleTime - touchLeftTime > 0.0
+                    && touchMiddleTime - touchLeftTime < SWITCH_MUSIC_INTERVAL
+                    && touchRightTime - touchMiddleTime > 0.0
+                    && touchRightTime - touchMiddleTime < SWITCH_MUSIC_INTERVAL)
+                        [musicPlayer skipToNextItem];
+                
+                else if (touchMiddleTime - touchRightTime > 0.0
+                         && touchMiddleTime - touchMiddleTime < SWITCH_MUSIC_INTERVAL
+                         && touchLeftTime - touchMiddleTime > 0.0
+                         && touchLeftTime - touchMiddleTime < SWITCH_MUSIC_INTERVAL)
+                    [musicPlayer skipToPreviousItem];
+                
+                touchedLeft = false;
+                touchedMiddle = false;
+                touchedRight = false;
+            }
+            
         }
         
         //Pin I/O
