@@ -9,6 +9,7 @@
 #import <QuartzCore/QuartzCore.h>
 #import "NSString+hex.h"
 #import "NSData+hex.h"
+#import <AVFoundation/AVAudioSession.h>
 
 #define CONNECTING_TEXT @"Connecting…"
 #define DISCONNECTING_TEXT @"Disconnecting…"
@@ -467,6 +468,7 @@ NSTimeInterval touchLeftTime = 0.0;
 NSTimeInterval touchMiddleTime = 0.0;
 NSTimeInterval touchRightTime = 0.0;
 
+
 - (void)didReceiveData:(NSData*)newData{
     
     //Data incoming from UART peripheral, forward to current view controller
@@ -553,13 +555,25 @@ NSTimeInterval touchRightTime = 0.0;
                 touchRightTime = currentTime;
                 touchedRight = true;
             }
-            
+            NSLog(@"touchRightTime = %f", touchRightTime);
+            NSLog(@"touchMiddleTime = %f", touchMiddleTime);
+            NSLog(@"touchLeftTime = %f", touchLeftTime);
+            NSLog(@"touchedRight = %i", touchedRight);
+            NSLog(@"touchedMiddle = %i", touchedMiddle);
+            NSLog(@"touchedLeft = %i", touchedLeft);
             if (touchedLeft && touchedMiddle && touchedRight) {
                 if (touchMiddleTime - touchLeftTime > 0.0
                     && touchMiddleTime - touchLeftTime < SWITCH_MUSIC_INTERVAL
                     && touchRightTime - touchMiddleTime > 0.0
-                    && touchRightTime - touchMiddleTime < SWITCH_MUSIC_INTERVAL)
+                    && touchRightTime - touchMiddleTime < SWITCH_MUSIC_INTERVAL) {
                         [musicPlayer skipToNextItem];
+                        //NSLog(@"touchRightTime = %f", touchRightTime);
+                        //NSLog(@"touchMiddleTime = %f", touchMiddleTime);
+                        //NSLog(@"touchLeftTime = %f", touchLeftTime);
+                        //NSLog(@"touchedRight = %i", touchedRight);
+                        //NSLog(@"touchedMiddle = %i", touchedMiddle);
+                        //NSLog(@"touchedLeft = %i", touchedLeft);
+                }
                 
                 else if (touchMiddleTime - touchRightTime > 0.0
                          && touchMiddleTime - touchMiddleTime < SWITCH_MUSIC_INTERVAL
@@ -571,9 +585,9 @@ NSTimeInterval touchRightTime = 0.0;
                 touchedMiddle = false;
                 touchedRight = false;
             }
-            
+
         }
-        
+
         //Pin I/O
         else if (_connectionMode == ConnectionModePinIO){
             //send data to PIN IO Controller
