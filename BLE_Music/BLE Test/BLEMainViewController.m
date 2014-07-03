@@ -95,6 +95,13 @@ const int RIGHT_PICK_SIGNAL = 825360384;
     UIButton *buttonCopy = [NSKeyedUnarchiver unarchiveObjectWithData: archivedData];
     [buttonCopy addTarget:self action:@selector(showInfo:) forControlEvents:UIControlEventTouchUpInside];
     infoBarButton = [[UIBarButtonItem alloc]initWithCustomView:buttonCopy];
+    
+    touchedLeft = false;
+    touchedMiddle = false;
+    touchedRight = false;
+    touchLeftTime = 0.0;
+    touchMiddleTime = 0.0;
+    touchRightTime = 0.0;
 
 }
 
