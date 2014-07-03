@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		4A51142F195BAF2200C665DB /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A51142E195BAF2200C665DB /* AVFoundation.framework */; };
+		EB233D1D1965DB10006F947D /* HueSDK_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EB233D1C1965DB10006F947D /* HueSDK_iOS.framework */; };
 		EBAA2DE2195C928300F9446D /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EBAA2DE1195C928300F9446D /* MediaPlayer.framework */; };
 		F02E54DB18AE94E1006AE85A /* NSData+hex.m in Sources */ = {isa = PBXBuildFile; fileRef = F02E54DA18AE94E1006AE85A /* NSData+hex.m */; };
 		F054948B1893188D007C7284 /* NSString+hex.m in Sources */ = {isa = PBXBuildFile; fileRef = F054948A1893188D007C7284 /* NSString+hex.m */; };
@@ -60,6 +61,7 @@
 
 /* Begin PBXFileReference section */
 		4A51142E195BAF2200C665DB /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		EB233D1C1965DB10006F947D /* HueSDK_iOS.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HueSDK_iOS.framework; path = "../../../iOS_Dev/PhilipsHue-PhilipsHueSDK-iOS-OSX-7c9f254/HueSDK_iOS.framework"; sourceTree = "<group>"; };
 		EBAA2DE1195C928300F9446D /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
 		F02E54D918AE94E1006AE85A /* NSData+hex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+hex.h"; sourceTree = "<group>"; };
 		F02E54DA18AE94E1006AE85A /* NSData+hex.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+hex.m"; sourceTree = "<group>"; };
@@ -129,6 +131,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EB233D1D1965DB10006F947D /* HueSDK_iOS.framework in Frameworks */,
 				EBAA2DE2195C928300F9446D /* MediaPlayer.framework in Frameworks */,
 				4A51142F195BAF2200C665DB /* AVFoundation.framework in Frameworks */,
 				F0C47C1F16C23D67002EFADA /* QuartzCore.framework in Frameworks */,
@@ -195,6 +198,7 @@
 		F0A2C96816BBE44500F2FD12 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				EB233D1C1965DB10006F947D /* HueSDK_iOS.framework */,
 				EBAA2DE1195C928300F9446D /* MediaPlayer.framework */,
 				4A51142E195BAF2200C665DB /* AVFoundation.framework */,
 				F0C47C1E16C23D67002EFADA /* QuartzCore.framework */,
@@ -492,6 +496,10 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"/Users/Face2sea/Documents/iOS_Dev/PhilipsHue-PhilipsHueSDK-iOS-OSX-7c9f254",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "BLE Test/BluetoothLE Test-Prefix.pch";
 				INFOPLIST_FILE = "BLE Test/BluetoothLE Test-Info.plist";
@@ -510,6 +518,10 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"/Users/Face2sea/Documents/iOS_Dev/PhilipsHue-PhilipsHueSDK-iOS-OSX-7c9f254",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "BLE Test/BluetoothLE Test-Prefix.pch";
 				INFOPLIST_FILE = "BLE Test/BluetoothLE Test-Info.plist";
