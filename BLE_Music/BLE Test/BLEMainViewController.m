@@ -562,24 +562,18 @@ NSTimeInterval touchRightTime = 0.0;
                 touchRightTime = currentTime;
                 touchedRight = true;
             }
-            NSLog(@"touchRightTime = %f", touchRightTime);
-            NSLog(@"touchMiddleTime = %f", touchMiddleTime);
-            NSLog(@"touchLeftTime = %f", touchLeftTime);
-            NSLog(@"touchedRight = %i", touchedRight);
-            NSLog(@"touchedMiddle = %i", touchedMiddle);
-            NSLog(@"touchedLeft = %i", touchedLeft);
+            //NSLog(@"touchRightTime = %f", touchRightTime);
+            //NSLog(@"touchMiddleTime = %f", touchMiddleTime);
+            //NSLog(@"touchLeftTime = %f", touchLeftTime);
+            //NSLog(@"touchedRight = %i", touchedRight);
+            //NSLog(@"touchedMiddle = %i", touchedMiddle);
+            //NSLog(@"touchedLeft = %i", touchedLeft);
             if (touchedLeft && touchedMiddle && touchedRight) {
                 if (touchMiddleTime - touchLeftTime > 0.0
                     && touchMiddleTime - touchLeftTime < SWITCH_MUSIC_INTERVAL
                     && touchRightTime - touchMiddleTime > 0.0
                     && touchRightTime - touchMiddleTime < SWITCH_MUSIC_INTERVAL) {
                         [musicPlayer skipToNextItem];
-                        //NSLog(@"touchRightTime = %f", touchRightTime);
-                        //NSLog(@"touchMiddleTime = %f", touchMiddleTime);
-                        //NSLog(@"touchLeftTime = %f", touchLeftTime);
-                        //NSLog(@"touchedRight = %i", touchedRight);
-                        //NSLog(@"touchedMiddle = %i", touchedMiddle);
-                        //NSLog(@"touchedLeft = %i", touchedLeft);
                 }
                 
                 else if (touchMiddleTime - touchRightTime > 0.0
