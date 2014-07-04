@@ -3,19 +3,19 @@
     {
       "size" : "29x29",
       "idiom" : "iphone",
-      "filename" : "ios7_settings_icon@2x.png",
+      "filename" : "Momeeto_logo_60.png",
       "scale" : "2x"
     },
     {
       "size" : "40x40",
       "idiom" : "iphone",
-      "filename" : "ios7_spotlight_icon@2x.png",
+      "filename" : "Momeeto_logo_80.png",
       "scale" : "2x"
     },
     {
       "size" : "60x60",
       "idiom" : "iphone",
-      "filename" : "ios7_app_icon_iphone@2x.png",
+      "filename" : "Momeeto_logo_120.png",
       "scale" : "2x"
     },
     {
