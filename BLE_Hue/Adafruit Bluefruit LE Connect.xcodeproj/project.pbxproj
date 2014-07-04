@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		4A51142F195BAF2200C665DB /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A51142E195BAF2200C665DB /* AVFoundation.framework */; };
 		EB233D1D1965DB10006F947D /* HueSDK_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EB233D1C1965DB10006F947D /* HueSDK_iOS.framework */; };
+		EB233D271966515B006F947D /* Momeeto_logo_60.png in Resources */ = {isa = PBXBuildFile; fileRef = EB233D241966515B006F947D /* Momeeto_logo_60.png */; };
+		EB233D281966515B006F947D /* Momeeto_logo_80.png in Resources */ = {isa = PBXBuildFile; fileRef = EB233D251966515B006F947D /* Momeeto_logo_80.png */; };
+		EB233D291966515B006F947D /* Momeeto_logo_120.png in Resources */ = {isa = PBXBuildFile; fileRef = EB233D261966515B006F947D /* Momeeto_logo_120.png */; };
 		EBAA2DE2195C928300F9446D /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EBAA2DE1195C928300F9446D /* MediaPlayer.framework */; };
 		F02E54DB18AE94E1006AE85A /* NSData+hex.m in Sources */ = {isa = PBXBuildFile; fileRef = F02E54DA18AE94E1006AE85A /* NSData+hex.m */; };
 		F054948B1893188D007C7284 /* NSString+hex.m in Sources */ = {isa = PBXBuildFile; fileRef = F054948A1893188D007C7284 /* NSString+hex.m */; };
@@ -62,6 +65,9 @@
 /* Begin PBXFileReference section */
 		4A51142E195BAF2200C665DB /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		EB233D1C1965DB10006F947D /* HueSDK_iOS.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HueSDK_iOS.framework; path = "../../../iOS_Dev/PhilipsHue-PhilipsHueSDK-iOS-OSX-7c9f254/HueSDK_iOS.framework"; sourceTree = "<group>"; };
+		EB233D241966515B006F947D /* Momeeto_logo_60.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Momeeto_logo_60.png; sourceTree = "<group>"; };
+		EB233D251966515B006F947D /* Momeeto_logo_80.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Momeeto_logo_80.png; sourceTree = "<group>"; };
+		EB233D261966515B006F947D /* Momeeto_logo_120.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Momeeto_logo_120.png; sourceTree = "<group>"; };
 		EBAA2DE1195C928300F9446D /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
 		F02E54D918AE94E1006AE85A /* NSData+hex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+hex.h"; sourceTree = "<group>"; };
 		F02E54DA18AE94E1006AE85A /* NSData+hex.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+hex.m"; sourceTree = "<group>"; };
@@ -242,6 +248,9 @@
 				F0A2C97216BBE44500F2FD12 /* InfoPlist.strings */,
 				F0A2C97516BBE44500F2FD12 /* main.m */,
 				F0A2C97716BBE44500F2FD12 /* BluetoothLE Test-Prefix.pch */,
+				EB233D241966515B006F947D /* Momeeto_logo_60.png */,
+				EB233D251966515B006F947D /* Momeeto_logo_80.png */,
+				EB233D261966515B006F947D /* Momeeto_logo_120.png */,
 				F0A2C97B16BBE44500F2FD12 /* Default.png */,
 				F0A2C97D16BBE44500F2FD12 /* Default@2x.png */,
 				F0A2C97F16BBE44500F2FD12 /* Default-568h@2x.png */,
@@ -338,6 +347,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F0A2C97416BBE44500F2FD12 /* InfoPlist.strings in Resources */,
+				EB233D271966515B006F947D /* Momeeto_logo_60.png in Resources */,
 				F0A2C97C16BBE44500F2FD12 /* Default.png in Resources */,
 				F0A2C97E16BBE44500F2FD12 /* Default@2x.png in Resources */,
 				F0A2C98016BBE44500F2FD12 /* Default-568h@2x.png in Resources */,
@@ -355,6 +365,7 @@
 				F0C47C1A16C23CB3002EFADA /* CPModuleButtonStretchable.png in Resources */,
 				F0FB078618C02B2300D263DD /* BLEMainViewController_iPhone568px.xib in Resources */,
 				F0C47C1B16C23CB3002EFADA /* CPModuleButtonStretchable@2x.png in Resources */,
+				EB233D281966515B006F947D /* Momeeto_logo_80.png in Resources */,
 				F0C47C1C16C23CB3002EFADA /* CPModuleButtonStretchableDisabled.png in Resources */,
 				F0C47C1D16C23CB3002EFADA /* CPModuleButtonStretchableDisabled@2x.png in Resources */,
 				F0B556EF18C020FC008D05D7 /* PinIOViewController_iPhone568px.xib in Resources */,
@@ -366,6 +377,7 @@
 				F08ACA6B16DD0C0400A377D1 /* cellGradient3-150h@2x.png in Resources */,
 				F0A47E0F189F90CB007E96AC /* PinIOViewController_iPad.xib in Resources */,
 				F08ACA6C16DD0C0400A377D1 /* cellGradient3-150h.png in Resources */,
+				EB233D291966515B006F947D /* Momeeto_logo_120.png in Resources */,
 				F0FB078818C02D9800D263DD /* UARTViewController_iPhone568px.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
