@@ -12,6 +12,16 @@
 		EB233D271966515B006F947D /* Momeeto_logo_60.png in Resources */ = {isa = PBXBuildFile; fileRef = EB233D241966515B006F947D /* Momeeto_logo_60.png */; };
 		EB233D281966515B006F947D /* Momeeto_logo_80.png in Resources */ = {isa = PBXBuildFile; fileRef = EB233D251966515B006F947D /* Momeeto_logo_80.png */; };
 		EB233D291966515B006F947D /* Momeeto_logo_120.png in Resources */ = {isa = PBXBuildFile; fileRef = EB233D261966515B006F947D /* Momeeto_logo_120.png */; };
+		EB42AD66196B31ED00AF3D75 /* DDAbstractDatabaseLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = EB42AD58196B310F00AF3D75 /* DDAbstractDatabaseLogger.m */; };
+		EB42AD67196B31ED00AF3D75 /* DDASLLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = EB42AD5A196B310F00AF3D75 /* DDASLLogger.m */; };
+		EB42AD68196B31ED00AF3D75 /* DDFileLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = EB42AD5C196B310F00AF3D75 /* DDFileLogger.m */; };
+		EB42AD69196B31ED00AF3D75 /* DDLog.m in Sources */ = {isa = PBXBuildFile; fileRef = EB42AD5E196B310F00AF3D75 /* DDLog.m */; };
+		EB42AD6A196B31ED00AF3D75 /* DDTTYLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = EB42AD60196B310F00AF3D75 /* DDTTYLogger.m */; };
+		EB42AD6B196B31ED00AF3D75 /* ContextFilterLogFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = EB42AD63196B310F00AF3D75 /* ContextFilterLogFormatter.m */; };
+		EB42AD6C196B31ED00AF3D75 /* DispatchQueueLogFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = EB42AD65196B310F00AF3D75 /* DispatchQueueLogFormatter.m */; };
+		EB42AD6E196B322D00AF3D75 /* PHControlLightsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EB42AD6D196B322D00AF3D75 /* PHControlLightsViewController.m */; };
+		EB42AD71196B324400AF3D75 /* PHBridgePushLinkViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EB42AD6F196B324400AF3D75 /* PHBridgePushLinkViewController.m */; };
+		EB42AD72196B324400AF3D75 /* PHBridgeSelectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EB42AD70196B324400AF3D75 /* PHBridgeSelectionViewController.m */; };
 		EBAA2DE2195C928300F9446D /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EBAA2DE1195C928300F9446D /* MediaPlayer.framework */; };
 		F02E54DB18AE94E1006AE85A /* NSData+hex.m in Sources */ = {isa = PBXBuildFile; fileRef = F02E54DA18AE94E1006AE85A /* NSData+hex.m */; };
 		F054948B1893188D007C7284 /* NSString+hex.m in Sources */ = {isa = PBXBuildFile; fileRef = F054948A1893188D007C7284 /* NSString+hex.m */; };
@@ -68,6 +78,26 @@
 		EB233D241966515B006F947D /* Momeeto_logo_60.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Momeeto_logo_60.png; sourceTree = "<group>"; };
 		EB233D251966515B006F947D /* Momeeto_logo_80.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Momeeto_logo_80.png; sourceTree = "<group>"; };
 		EB233D261966515B006F947D /* Momeeto_logo_120.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Momeeto_logo_120.png; sourceTree = "<group>"; };
+		EB42AD53196B15FD00AF3D75 /* PHBridgePushLinkViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PHBridgePushLinkViewController.h; sourceTree = "<group>"; };
+		EB42AD54196B15FD00AF3D75 /* PHBridgeSelectionViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PHBridgeSelectionViewController.h; sourceTree = "<group>"; };
+		EB42AD55196B22DA00AF3D75 /* PHControlLightsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PHControlLightsViewController.h; sourceTree = "<group>"; };
+		EB42AD57196B310F00AF3D75 /* DDAbstractDatabaseLogger.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DDAbstractDatabaseLogger.h; sourceTree = "<group>"; };
+		EB42AD58196B310F00AF3D75 /* DDAbstractDatabaseLogger.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DDAbstractDatabaseLogger.m; sourceTree = "<group>"; };
+		EB42AD59196B310F00AF3D75 /* DDASLLogger.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DDASLLogger.h; sourceTree = "<group>"; };
+		EB42AD5A196B310F00AF3D75 /* DDASLLogger.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DDASLLogger.m; sourceTree = "<group>"; };
+		EB42AD5B196B310F00AF3D75 /* DDFileLogger.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DDFileLogger.h; sourceTree = "<group>"; };
+		EB42AD5C196B310F00AF3D75 /* DDFileLogger.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DDFileLogger.m; sourceTree = "<group>"; };
+		EB42AD5D196B310F00AF3D75 /* DDLog.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DDLog.h; sourceTree = "<group>"; };
+		EB42AD5E196B310F00AF3D75 /* DDLog.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DDLog.m; sourceTree = "<group>"; };
+		EB42AD5F196B310F00AF3D75 /* DDTTYLogger.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DDTTYLogger.h; sourceTree = "<group>"; };
+		EB42AD60196B310F00AF3D75 /* DDTTYLogger.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DDTTYLogger.m; sourceTree = "<group>"; };
+		EB42AD62196B310F00AF3D75 /* ContextFilterLogFormatter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ContextFilterLogFormatter.h; sourceTree = "<group>"; };
+		EB42AD63196B310F00AF3D75 /* ContextFilterLogFormatter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ContextFilterLogFormatter.m; sourceTree = "<group>"; };
+		EB42AD64196B310F00AF3D75 /* DispatchQueueLogFormatter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DispatchQueueLogFormatter.h; sourceTree = "<group>"; };
+		EB42AD65196B310F00AF3D75 /* DispatchQueueLogFormatter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DispatchQueueLogFormatter.m; sourceTree = "<group>"; };
+		EB42AD6D196B322D00AF3D75 /* PHControlLightsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PHControlLightsViewController.m; sourceTree = "<group>"; };
+		EB42AD6F196B324400AF3D75 /* PHBridgePushLinkViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PHBridgePushLinkViewController.m; sourceTree = "<group>"; };
+		EB42AD70196B324400AF3D75 /* PHBridgeSelectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PHBridgeSelectionViewController.m; sourceTree = "<group>"; };
 		EBAA2DE1195C928300F9446D /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
 		F02E54D918AE94E1006AE85A /* NSData+hex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+hex.h"; sourceTree = "<group>"; };
 		F02E54DA18AE94E1006AE85A /* NSData+hex.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+hex.m"; sourceTree = "<group>"; };
@@ -151,6 +181,36 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		EB42AD56196B310F00AF3D75 /* Lumberjack */ = {
+			isa = PBXGroup;
+			children = (
+				EB42AD57196B310F00AF3D75 /* DDAbstractDatabaseLogger.h */,
+				EB42AD58196B310F00AF3D75 /* DDAbstractDatabaseLogger.m */,
+				EB42AD59196B310F00AF3D75 /* DDASLLogger.h */,
+				EB42AD5A196B310F00AF3D75 /* DDASLLogger.m */,
+				EB42AD5B196B310F00AF3D75 /* DDFileLogger.h */,
+				EB42AD5C196B310F00AF3D75 /* DDFileLogger.m */,
+				EB42AD5D196B310F00AF3D75 /* DDLog.h */,
+				EB42AD5E196B310F00AF3D75 /* DDLog.m */,
+				EB42AD5F196B310F00AF3D75 /* DDTTYLogger.h */,
+				EB42AD60196B310F00AF3D75 /* DDTTYLogger.m */,
+				EB42AD61196B310F00AF3D75 /* Extensions */,
+			);
+			name = Lumberjack;
+			path = "../../../iOS_Dev/PhilipsHue-PhilipsHueSDK-iOS-OSX-7c9f254/Lumberjack";
+			sourceTree = "<group>";
+		};
+		EB42AD61196B310F00AF3D75 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				EB42AD62196B310F00AF3D75 /* ContextFilterLogFormatter.h */,
+				EB42AD63196B310F00AF3D75 /* ContextFilterLogFormatter.m */,
+				EB42AD64196B310F00AF3D75 /* DispatchQueueLogFormatter.h */,
+				EB42AD65196B310F00AF3D75 /* DispatchQueueLogFormatter.m */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		F08BFF4618A4F7C400EF43FB /* Categories */ = {
 			isa = PBXGroup;
 			children = (
@@ -204,6 +264,7 @@
 		F0A2C96816BBE44500F2FD12 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				EB42AD56196B310F00AF3D75 /* Lumberjack */,
 				EB233D1C1965DB10006F947D /* HueSDK_iOS.framework */,
 				EBAA2DE1195C928300F9446D /* MediaPlayer.framework */,
 				4A51142E195BAF2200C665DB /* AVFoundation.framework */,
@@ -228,10 +289,16 @@
 				F0A2C98216BBE44500F2FD12 /* BLEMainViewController.m */,
 				F0D74E7718A8DBF300643E00 /* HelpViewController.h */,
 				F0D74E7818A8DBF300643E00 /* HelpViewController.m */,
+				EB42AD53196B15FD00AF3D75 /* PHBridgePushLinkViewController.h */,
+				EB42AD54196B15FD00AF3D75 /* PHBridgeSelectionViewController.h */,
 				F0A47E10189F918C007E96AC /* PinCell.h */,
 				F0A47E11189F918C007E96AC /* PinCell.m */,
+				EB42AD55196B22DA00AF3D75 /* PHControlLightsViewController.h */,
 				F0A47E0B189F90CB007E96AC /* PinIOViewController.h */,
 				F0A47E0C189F90CB007E96AC /* PinIOViewController.m */,
+				EB42AD6F196B324400AF3D75 /* PHBridgePushLinkViewController.m */,
+				EB42AD70196B324400AF3D75 /* PHBridgeSelectionViewController.m */,
+				EB42AD6D196B322D00AF3D75 /* PHControlLightsViewController.m */,
 				F08CE40F188FD0C10098A4BD /* UARTPeripheral.h */,
 				F08CE410188FD0C10098A4BD /* UARTPeripheral.m */,
 				F0CE1B9418A23FF8005F831A /* UARTViewController.h */,
@@ -389,6 +456,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EB42AD66196B31ED00AF3D75 /* DDAbstractDatabaseLogger.m in Sources */,
+				EB42AD67196B31ED00AF3D75 /* DDASLLogger.m in Sources */,
+				EB42AD72196B324400AF3D75 /* PHBridgeSelectionViewController.m in Sources */,
+				EB42AD68196B31ED00AF3D75 /* DDFileLogger.m in Sources */,
+				EB42AD69196B31ED00AF3D75 /* DDLog.m in Sources */,
+				EB42AD6A196B31ED00AF3D75 /* DDTTYLogger.m in Sources */,
+				EB42AD6B196B31ED00AF3D75 /* ContextFilterLogFormatter.m in Sources */,
+				EB42AD6C196B31ED00AF3D75 /* DispatchQueueLogFormatter.m in Sources */,
 				F02E54DB18AE94E1006AE85A /* NSData+hex.m in Sources */,
 				F0A2C97616BBE44500F2FD12 /* main.m in Sources */,
 				F0D74E7918A8DBF300643E00 /* HelpViewController.m in Sources */,
@@ -399,7 +474,9 @@
 				F0A2C98316BBE44500F2FD12 /* BLEMainViewController.m in Sources */,
 				F08CE411188FD0C10098A4BD /* UARTPeripheral.m in Sources */,
 				F0A47E12189F918C007E96AC /* PinCell.m in Sources */,
+				EB42AD6E196B322D00AF3D75 /* PHControlLightsViewController.m in Sources */,
 				F0CE1B9718A23FF8005F831A /* UARTViewController.m in Sources */,
+				EB42AD71196B324400AF3D75 /* PHBridgePushLinkViewController.m in Sources */,
 				F054948B1893188D007C7284 /* NSString+hex.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
