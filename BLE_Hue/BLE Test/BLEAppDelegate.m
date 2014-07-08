@@ -8,11 +8,12 @@
 #import "BLEAppDelegate.h"
 
 #import "BLEMainViewController.h"
-
+#import "PHLoadingViewController.h"
 #import "PHControlLightsViewController.h"
 
 @interface BLEAppDelegate ()
 
+@property (nonatomic, strong) PHLoadingViewController *loadingView;
 @property (nonatomic, strong) PHBridgeSearching *bridgeSearch;
 
 @property (nonatomic, strong) UIAlertView *noConnectionAlert;
@@ -52,10 +53,10 @@
     // Create the main view controller in a navigation controller and make the navigation controller the rootviewcontroller of the app
     PHControlLightsViewController *controlLightsViewController = [[PHControlLightsViewController alloc] initWithNibName:@"PHControlLightsViewController" bundle:[NSBundle mainBundle]];
     
-    //self.navigationController = [[UINavigationController alloc] initWithRootViewController:controlLightsViewController];
+    self.navigationController = [[UINavigationController alloc] initWithRootViewController:controlLightsViewController];
     
-    //self.window.rootViewController = self.navigationController;
-    //[self.window makeKeyAndVisible];
+    self.window.rootViewController = self.navigationController;
+    [self.window makeKeyAndVisible];
     
     PHNotificationManager *notificationManager = [PHNotificationManager defaultManager];
     
@@ -95,11 +96,11 @@
     else{
         nibName = @"BLEMainViewController_iPad";
     }
-    self.mainViewController = [[BLEMainViewController alloc] initWithNibName:nibName bundle:nil];
+    //self.mainViewController = [[BLEMainViewController alloc] initWithNibName:nibName bundle:nil];
     
     
-    self.window.rootViewController = self.mainViewController;
-    [self.window makeKeyAndVisible];
+    //self.window.rootViewController = self.mainViewController;
+    //[self.window makeKeyAndVisible];
     return YES;
 }
 
@@ -115,6 +116,9 @@
     // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
     
     //      Hue
+    // Stop heartbeat
+    [self disableLocalHeartbeat];
+    
     // Remove any open popups
     if (self.noConnectionAlert != nil) {
         [self.noConnectionAlert dismissWithClickedButtonIndex:[self.noConnectionAlert cancelButtonIndex] animated:NO];
@@ -178,12 +182,12 @@
      *****************************************************/
     
     // Move to main screen (as you can't control lights when not connected)
-    //[self.navigationController popToRootViewControllerAnimated:YES];
+    [self.navigationController popToRootViewControllerAnimated:YES];
     
-    /* Dismiss modal views when connection is lost
+    //Dismiss modal views when connection is lost
     if (self.navigationController.presentedViewController) {
         [self.navigationController dismissViewControllerAnimated:YES completion:NULL];
-    }*/
+    }
     
     // Remove no connection alert
     if (self.noConnectionAlert != nil) {
@@ -205,10 +209,10 @@
 - (void)checkConnectionState {
     if (!self.phHueSDK.localConnected) {
         // Dismiss modal views when connection is lost
-        /*
+        
         if (self.navigationController.presentedViewController) {
             [self.navigationController dismissViewControllerAnimated:YES completion:NULL];
-        }*/
+        }
         
         // No connection at all, show connection popup
         
@@ -216,7 +220,7 @@
             //[self.navigationController popToRootViewControllerAnimated:YES];
             
             // Showing popup, so remove this view
-            //[self removeLoadingView];
+            [self removeLoadingView];
             [self showNoConnectionDialog];
         }
         
@@ -228,7 +232,7 @@
             [self.noConnectionAlert dismissWithClickedButtonIndex:[self.noConnectionAlert cancelButtonIndex] animated:YES];
             self.noConnectionAlert = nil;
         }
-        //[self removeLoadingView];
+        [self removeLoadingView];
         
     }
 }
@@ -294,11 +298,11 @@
      A bridge search is started using UPnP to find local bridges
      *****************************************************/
     
-    // Start search
-    self.bridgeSearch = [[PHBridgeSearching alloc] initWithUpnpSearch:YES andPortalSearch:YES];
+    // Start search    
+    self.bridgeSearch = [[PHBridgeSearching alloc] initWithUpnpSearch:YES andPortalSearch:NO];
     [self.bridgeSearch startSearchWithCompletionHandler:^(NSDictionary *bridgesFound) {
         // Done with search, remove loading view
-        //[self removeLoadingView];
+        [self removeLoadingView];
         
         /***************************************************
          The search is complete, check whether we found a bridge
@@ -313,11 +317,11 @@
             /***************************************************
              Use the list of bridges, present them to the user, so one can be selected.
              *****************************************************/
-            /*
+            
             UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:self.bridgeSelectionViewController];
             navController.modalPresentationStyle = UIModalPresentationFormSheet;
+            
             [self.navigationController presentViewController:navController animated:YES completion:nil];
-            */
         }
         else {
             /***************************************************
@@ -348,7 +352,7 @@
     
     // Remove the selection view controller
     self.bridgeSelectionViewController = nil;
-    //[self.navigationController dismissViewControllerAnimated:YES completion:nil];
+    [self.navigationController dismissViewControllerAnimated:YES completion:nil];
     
     // Show a connecting view while we try to connect to the bridge
     [self showLoadingViewWithText:NSLocalizedString(@"Connecting...", @"Connecting text")];
@@ -388,8 +392,8 @@
      *****************************************************/
     
     // Create an interface for the pushlinking
-    /*
-    self.pushLinkViewController = [[PHBridgePushLinkViewController alloc] initWithNibName:@"PHBridgePushLinkViewController" bundle:[NSBundle mainBundle] hueSDK:UIAppDelegate.phHueSDK delegate:self];*/
+    
+    self.pushLinkViewController = [[PHBridgePushLinkViewController alloc] initWithNibName:@"PHBridgePushLinkViewController" bundle:[NSBundle mainBundle] hueSDK:UIAppDelegate.phHueSDK delegate:self];
     
     [self.navigationController presentViewController:self.pushLinkViewController animated:YES completion:^{
         /***************************************************
@@ -487,7 +491,7 @@
             [self doAuthentication];
         } else if (buttonIndex == 1) {
             // Remove connecting loading message
-            //[self removeLoadingView];
+            [self removeLoadingView];
             // Cancel authentication and disable local heartbeat unit started manually again
             [self disableLocalHeartbeat];
         }
@@ -502,23 +506,24 @@
  */
 - (void)showLoadingViewWithText:(NSString *)text {
     // First remove
-    //[self removeLoadingView];
+    [self removeLoadingView];
     
-    /*
-    // Then add new
+    
+    //Then add new
     self.loadingView = [[PHLoadingViewController alloc] initWithNibName:@"PHLoadingViewController" bundle:[NSBundle mainBundle]];
     self.loadingView.view.frame = self.navigationController.view.bounds;
     [self.navigationController.view addSubview:self.loadingView.view];
-    self.loadingView.loadingLabel.text = text;*/
+    self.loadingView.loadingLabel.text = text;
 }
 
 /**
 // Removes the full screen loading overlay.
+*/
 - (void)removeLoadingView {
     if (self.loadingView != nil) {
         [self.loadingView.view removeFromSuperview];
         self.loadingView = nil;
     }
-}*/
+}
 
 @end

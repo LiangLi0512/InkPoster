@@ -22,7 +22,12 @@
 		EB42AD6E196B322D00AF3D75 /* PHControlLightsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EB42AD6D196B322D00AF3D75 /* PHControlLightsViewController.m */; };
 		EB42AD71196B324400AF3D75 /* PHBridgePushLinkViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EB42AD6F196B324400AF3D75 /* PHBridgePushLinkViewController.m */; };
 		EB42AD72196B324400AF3D75 /* PHBridgeSelectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EB42AD70196B324400AF3D75 /* PHBridgeSelectionViewController.m */; };
+		EB42AD74196B376100AF3D75 /* PHControlLightsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EB42AD73196B376100AF3D75 /* PHControlLightsViewController.xib */; };
+		EB42AD79196B3C6500AF3D75 /* PHLoadingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EB42AD77196B3C6500AF3D75 /* PHLoadingViewController.m */; };
+		EB42AD7A196B3C6500AF3D75 /* PHLoadingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EB42AD78196B3C6500AF3D75 /* PHLoadingViewController.xib */; };
 		EBAA2DE2195C928300F9446D /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EBAA2DE1195C928300F9446D /* MediaPlayer.framework */; };
+		EBCADE93196B938D00368532 /* PHBridgePushLinkViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EBCADE91196B938D00368532 /* PHBridgePushLinkViewController.xib */; };
+		EBCADE94196B938D00368532 /* PHBridgeSelectionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EBCADE92196B938D00368532 /* PHBridgeSelectionViewController.xib */; };
 		F02E54DB18AE94E1006AE85A /* NSData+hex.m in Sources */ = {isa = PBXBuildFile; fileRef = F02E54DA18AE94E1006AE85A /* NSData+hex.m */; };
 		F054948B1893188D007C7284 /* NSString+hex.m in Sources */ = {isa = PBXBuildFile; fileRef = F054948A1893188D007C7284 /* NSString+hex.m */; };
 		F05E7E0318BEF399005E25F6 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F05E7E0218BEF399005E25F6 /* Images.xcassets */; };
@@ -98,7 +103,13 @@
 		EB42AD6D196B322D00AF3D75 /* PHControlLightsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PHControlLightsViewController.m; sourceTree = "<group>"; };
 		EB42AD6F196B324400AF3D75 /* PHBridgePushLinkViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PHBridgePushLinkViewController.m; sourceTree = "<group>"; };
 		EB42AD70196B324400AF3D75 /* PHBridgeSelectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PHBridgeSelectionViewController.m; sourceTree = "<group>"; };
+		EB42AD73196B376100AF3D75 /* PHControlLightsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PHControlLightsViewController.xib; sourceTree = "<group>"; };
+		EB42AD76196B3C6500AF3D75 /* PHLoadingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PHLoadingViewController.h; sourceTree = "<group>"; };
+		EB42AD77196B3C6500AF3D75 /* PHLoadingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PHLoadingViewController.m; sourceTree = "<group>"; };
+		EB42AD78196B3C6500AF3D75 /* PHLoadingViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PHLoadingViewController.xib; sourceTree = "<group>"; };
 		EBAA2DE1195C928300F9446D /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
+		EBCADE91196B938D00368532 /* PHBridgePushLinkViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PHBridgePushLinkViewController.xib; sourceTree = "<group>"; };
+		EBCADE92196B938D00368532 /* PHBridgeSelectionViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PHBridgeSelectionViewController.xib; sourceTree = "<group>"; };
 		F02E54D918AE94E1006AE85A /* NSData+hex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+hex.h"; sourceTree = "<group>"; };
 		F02E54DA18AE94E1006AE85A /* NSData+hex.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+hex.m"; sourceTree = "<group>"; };
 		F05494891893188D007C7284 /* NSString+hex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+hex.h"; sourceTree = "<group>"; };
@@ -211,6 +222,16 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
+		EB42AD75196B3C6500AF3D75 /* LoadingView */ = {
+			isa = PBXGroup;
+			children = (
+				EB42AD76196B3C6500AF3D75 /* PHLoadingViewController.h */,
+				EB42AD77196B3C6500AF3D75 /* PHLoadingViewController.m */,
+				EB42AD78196B3C6500AF3D75 /* PHLoadingViewController.xib */,
+			);
+			path = LoadingView;
+			sourceTree = "<group>";
+		};
 		F08BFF4618A4F7C400EF43FB /* Categories */ = {
 			isa = PBXGroup;
 			children = (
@@ -293,11 +314,15 @@
 				EB42AD54196B15FD00AF3D75 /* PHBridgeSelectionViewController.h */,
 				F0A47E10189F918C007E96AC /* PinCell.h */,
 				F0A47E11189F918C007E96AC /* PinCell.m */,
+				EB42AD75196B3C6500AF3D75 /* LoadingView */,
 				EB42AD55196B22DA00AF3D75 /* PHControlLightsViewController.h */,
 				F0A47E0B189F90CB007E96AC /* PinIOViewController.h */,
 				F0A47E0C189F90CB007E96AC /* PinIOViewController.m */,
 				EB42AD6F196B324400AF3D75 /* PHBridgePushLinkViewController.m */,
 				EB42AD70196B324400AF3D75 /* PHBridgeSelectionViewController.m */,
+				EB42AD73196B376100AF3D75 /* PHControlLightsViewController.xib */,
+				EBCADE91196B938D00368532 /* PHBridgePushLinkViewController.xib */,
+				EBCADE92196B938D00368532 /* PHBridgeSelectionViewController.xib */,
 				EB42AD6D196B322D00AF3D75 /* PHControlLightsViewController.m */,
 				F08CE40F188FD0C10098A4BD /* UARTPeripheral.h */,
 				F08CE410188FD0C10098A4BD /* UARTPeripheral.m */,
@@ -420,6 +445,7 @@
 				F0A2C98016BBE44500F2FD12 /* Default-568h@2x.png in Resources */,
 				F0A2C98916BBE44500F2FD12 /* BLEMainViewController_iPhone.xib in Resources */,
 				F0A2C98C16BBE44500F2FD12 /* BLEMainViewController_iPad.xib in Resources */,
+				EB42AD74196B376100AF3D75 /* PHControlLightsViewController.xib in Resources */,
 				F0C47C0016C229F2002EFADA /* Adaflower@2x~ipad.png in Resources */,
 				F0A47E14189F9257007E96AC /* PinIOViewController_iPhone.xib in Resources */,
 				F0CE1B9A18A24030005F831A /* UARTViewController_iPhone.xib in Resources */,
@@ -429,10 +455,13 @@
 				F0C47C1816C23CB3002EFADA /* CPGridButtonStretchable.png in Resources */,
 				F0C47C1916C23CB3002EFADA /* CPGridButtonStretchable@2x.png in Resources */,
 				F0CE1B9818A23FF8005F831A /* UARTViewController_iPad.xib in Resources */,
+				EBCADE93196B938D00368532 /* PHBridgePushLinkViewController.xib in Resources */,
+				EBCADE94196B938D00368532 /* PHBridgeSelectionViewController.xib in Resources */,
 				F0C47C1A16C23CB3002EFADA /* CPModuleButtonStretchable.png in Resources */,
 				F0FB078618C02B2300D263DD /* BLEMainViewController_iPhone568px.xib in Resources */,
 				F0C47C1B16C23CB3002EFADA /* CPModuleButtonStretchable@2x.png in Resources */,
 				EB233D281966515B006F947D /* Momeeto_logo_80.png in Resources */,
+				EB42AD7A196B3C6500AF3D75 /* PHLoadingViewController.xib in Resources */,
 				F0C47C1C16C23CB3002EFADA /* CPModuleButtonStretchableDisabled.png in Resources */,
 				F0C47C1D16C23CB3002EFADA /* CPModuleButtonStretchableDisabled@2x.png in Resources */,
 				F0B556EF18C020FC008D05D7 /* PinIOViewController_iPhone568px.xib in Resources */,
@@ -476,6 +505,7 @@
 				F0A47E12189F918C007E96AC /* PinCell.m in Sources */,
 				EB42AD6E196B322D00AF3D75 /* PHControlLightsViewController.m in Sources */,
 				F0CE1B9718A23FF8005F831A /* UARTViewController.m in Sources */,
+				EB42AD79196B3C6500AF3D75 /* PHLoadingViewController.m in Sources */,
 				EB42AD71196B324400AF3D75 /* PHBridgePushLinkViewController.m in Sources */,
 				F054948B1893188D007C7284 /* NSString+hex.m in Sources */,
 			);

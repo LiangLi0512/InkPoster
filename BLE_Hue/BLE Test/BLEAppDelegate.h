@@ -16,7 +16,8 @@
 @class BLEMainViewController;
 @class PHHueSDK;
 
-@interface BLEAppDelegate : UIResponder <UIApplicationDelegate>
+@interface BLEAppDelegate : UIResponder <UIApplicationDelegate, UIAlertViewDelegate,
+   PHBridgeSelectionViewControllerDelegate, PHBridgePushLinkViewControllerDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
 
