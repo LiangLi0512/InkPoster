@@ -26,8 +26,10 @@
 		EB42AD79196B3C6500AF3D75 /* PHLoadingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EB42AD77196B3C6500AF3D75 /* PHLoadingViewController.m */; };
 		EB42AD7A196B3C6500AF3D75 /* PHLoadingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EB42AD78196B3C6500AF3D75 /* PHLoadingViewController.xib */; };
 		EBAA2DE2195C928300F9446D /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EBAA2DE1195C928300F9446D /* MediaPlayer.framework */; };
-		EBCADE93196B938D00368532 /* PHBridgePushLinkViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EBCADE91196B938D00368532 /* PHBridgePushLinkViewController.xib */; };
 		EBCADE94196B938D00368532 /* PHBridgeSelectionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EBCADE92196B938D00368532 /* PHBridgeSelectionViewController.xib */; };
+		EBCADE96196C35F200368532 /* PHBridgePushLinkViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EBCADE95196C35F200368532 /* PHBridgePushLinkViewController.xib */; };
+		EBCADE9A196C362B00368532 /* press_smartbridge.png in Resources */ = {isa = PBXBuildFile; fileRef = EBCADE98196C362B00368532 /* press_smartbridge.png */; };
+		EBCADE9B196C362B00368532 /* press_smartbridge@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EBCADE99196C362B00368532 /* press_smartbridge@2x.png */; };
 		F02E54DB18AE94E1006AE85A /* NSData+hex.m in Sources */ = {isa = PBXBuildFile; fileRef = F02E54DA18AE94E1006AE85A /* NSData+hex.m */; };
 		F054948B1893188D007C7284 /* NSString+hex.m in Sources */ = {isa = PBXBuildFile; fileRef = F054948A1893188D007C7284 /* NSString+hex.m */; };
 		F05E7E0318BEF399005E25F6 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F05E7E0218BEF399005E25F6 /* Images.xcassets */; };
@@ -108,8 +110,10 @@
 		EB42AD77196B3C6500AF3D75 /* PHLoadingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PHLoadingViewController.m; sourceTree = "<group>"; };
 		EB42AD78196B3C6500AF3D75 /* PHLoadingViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PHLoadingViewController.xib; sourceTree = "<group>"; };
 		EBAA2DE1195C928300F9446D /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
-		EBCADE91196B938D00368532 /* PHBridgePushLinkViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PHBridgePushLinkViewController.xib; sourceTree = "<group>"; };
 		EBCADE92196B938D00368532 /* PHBridgeSelectionViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PHBridgeSelectionViewController.xib; sourceTree = "<group>"; };
+		EBCADE95196C35F200368532 /* PHBridgePushLinkViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PHBridgePushLinkViewController.xib; sourceTree = "<group>"; };
+		EBCADE98196C362B00368532 /* press_smartbridge.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = press_smartbridge.png; sourceTree = "<group>"; };
+		EBCADE99196C362B00368532 /* press_smartbridge@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "press_smartbridge@2x.png"; sourceTree = "<group>"; };
 		F02E54D918AE94E1006AE85A /* NSData+hex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+hex.h"; sourceTree = "<group>"; };
 		F02E54DA18AE94E1006AE85A /* NSData+hex.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+hex.m"; sourceTree = "<group>"; };
 		F05494891893188D007C7284 /* NSString+hex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+hex.h"; sourceTree = "<group>"; };
@@ -232,6 +236,15 @@
 			path = LoadingView;
 			sourceTree = "<group>";
 		};
+		EBCADE97196C362B00368532 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				EBCADE98196C362B00368532 /* press_smartbridge.png */,
+				EBCADE99196C362B00368532 /* press_smartbridge@2x.png */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
 		F08BFF4618A4F7C400EF43FB /* Categories */ = {
 			isa = PBXGroup;
 			children = (
@@ -319,15 +332,16 @@
 				F0A47E0B189F90CB007E96AC /* PinIOViewController.h */,
 				F0A47E0C189F90CB007E96AC /* PinIOViewController.m */,
 				EB42AD6F196B324400AF3D75 /* PHBridgePushLinkViewController.m */,
+				EBCADE95196C35F200368532 /* PHBridgePushLinkViewController.xib */,
 				EB42AD70196B324400AF3D75 /* PHBridgeSelectionViewController.m */,
 				EB42AD73196B376100AF3D75 /* PHControlLightsViewController.xib */,
-				EBCADE91196B938D00368532 /* PHBridgePushLinkViewController.xib */,
 				EBCADE92196B938D00368532 /* PHBridgeSelectionViewController.xib */,
 				EB42AD6D196B322D00AF3D75 /* PHControlLightsViewController.m */,
 				F08CE40F188FD0C10098A4BD /* UARTPeripheral.h */,
 				F08CE410188FD0C10098A4BD /* UARTPeripheral.m */,
 				F0CE1B9418A23FF8005F831A /* UARTViewController.h */,
 				F0CE1B9518A23FF8005F831A /* UARTViewController.m */,
+				EBCADE97196C362B00368532 /* Resources */,
 			);
 			name = Classes;
 			path = "BLE Test";
@@ -448,14 +462,15 @@
 				EB42AD74196B376100AF3D75 /* PHControlLightsViewController.xib in Resources */,
 				F0C47C0016C229F2002EFADA /* Adaflower@2x~ipad.png in Resources */,
 				F0A47E14189F9257007E96AC /* PinIOViewController_iPhone.xib in Resources */,
+				EBCADE9A196C362B00368532 /* press_smartbridge.png in Resources */,
 				F0CE1B9A18A24030005F831A /* UARTViewController_iPhone.xib in Resources */,
 				F0C47C0116C229F2002EFADA /* Adaflower.png in Resources */,
+				EBCADE9B196C362B00368532 /* press_smartbridge@2x.png in Resources */,
 				F0C47C0C16C2362E002EFADA /* adafruit_logo2012-white-horiz-230w@2x.png in Resources */,
 				F0C47C0D16C2362E002EFADA /* adafruit_logo2012-white-horiz-230w.png in Resources */,
 				F0C47C1816C23CB3002EFADA /* CPGridButtonStretchable.png in Resources */,
 				F0C47C1916C23CB3002EFADA /* CPGridButtonStretchable@2x.png in Resources */,
 				F0CE1B9818A23FF8005F831A /* UARTViewController_iPad.xib in Resources */,
-				EBCADE93196B938D00368532 /* PHBridgePushLinkViewController.xib in Resources */,
 				EBCADE94196B938D00368532 /* PHBridgeSelectionViewController.xib in Resources */,
 				F0C47C1A16C23CB3002EFADA /* CPModuleButtonStretchable.png in Resources */,
 				F0FB078618C02B2300D263DD /* BLEMainViewController_iPhone568px.xib in Resources */,
@@ -469,6 +484,7 @@
 				F0C47C2216C23FD3002EFADA /* adafruit_logo2012-embossDark.png in Resources */,
 				F0C47C2316C23FD3002EFADA /* adafruit_logo2012-embossDark@2x.png in Resources */,
 				F09E52D016D77CA800F1F37A /* cellGradient150h.png in Resources */,
+				EBCADE96196C35F200368532 /* PHBridgePushLinkViewController.xib in Resources */,
 				F09E52D216D7814600F1F37A /* cellGradient2-150h.png in Resources */,
 				F08ACA6B16DD0C0400A377D1 /* cellGradient3-150h@2x.png in Resources */,
 				F0A47E0F189F90CB007E96AC /* PinIOViewController_iPad.xib in Resources */,
@@ -623,6 +639,8 @@
 				GCC_PREFIX_HEADER = "BLE Test/BluetoothLE Test-Prefix.pch";
 				INFOPLIST_FILE = "BLE Test/BluetoothLE Test-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				New_Setting = "";
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "BluetoothLE Test";
 				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 1;
@@ -645,6 +663,8 @@
 				GCC_PREFIX_HEADER = "BLE Test/BluetoothLE Test-Prefix.pch";
 				INFOPLIST_FILE = "BLE Test/BluetoothLE Test-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				New_Setting = "";
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "BluetoothLE Test";
 				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 1;

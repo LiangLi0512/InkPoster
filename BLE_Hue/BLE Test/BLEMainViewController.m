@@ -10,7 +10,12 @@
 #import "NSString+hex.h"
 #import "NSData+hex.h"
 #import <AVFoundation/AVAudioSession.h>
+#import "PHControlLightsViewController.h"
+#import "BLEAppDelegate.h"
 
+#import <HueSDK_iOS/HueSDK.h>
+
+#define MAX_HUE 65535
 #define CONNECTING_TEXT @"Connecting…"
 #define DISCONNECTING_TEXT @"Disconnecting…"
 #define DISCONNECT_TEXT @"Disconnect"
@@ -22,6 +27,7 @@ const int PLAY_MUSCI_SIGNAL = 822083584;
 const int LEFT_PICK_SIGNAL = 825229312;
 const int MIDDLE_PICK_SIGNAL = 825294848;
 const int RIGHT_PICK_SIGNAL = 825360384;
+const int RANDOM_HUE = 842006528;
 
 
 @interface BLEMainViewController ()<UIAlertViewDelegate>{
@@ -492,11 +498,37 @@ NSTimeInterval touchRightTime = 0.0;
     
             int value = CFSwapInt32BigToHost(*(int*)([newData bytes]));
             NSTimeInterval currentTime = [[NSDate date] timeIntervalSince1970];
-            //NSLog(@"value = %i", value);
+            NSLog(@"value = %i", value);
+            
+            // by Lei Hue
+            if (RANDOM_HUE == value) {
+                PHBridgeResourcesCache *cache = [PHBridgeResourcesReader readBridgeResourcesCache];
+                id<PHBridgeSendAPI> bridgeSendAPI = [[[PHOverallFactory alloc] init] bridgeSendAPI];
+                
+                for (PHLight *light in cache.lights.allValues) {
+                    
+                    PHLightState *lightState = [[PHLightState alloc] init];
+                    
+                    [lightState setHue:[NSNumber numberWithInt:arc4random() % MAX_HUE]];
+                    [lightState setBrightness:[NSNumber numberWithInt:254]];
+                    [lightState setSaturation:[NSNumber numberWithInt:254]];
+                    
+                    // Send lightstate to light
+                    [bridgeSendAPI updateLightStateForId:light.identifier withLighState:lightState completionHandler:^(NSArray *errors) {
+                        if (errors != nil) {
+                            NSString *message = [NSString stringWithFormat:@"%@: %@", NSLocalizedString(@"Errors", @""), errors != nil ? errors : NSLocalizedString(@"none", @"")];
+                            
+                            NSLog(@"Response: %@",message);
+                        }
+                        
+                        //[self.randomLightsButton setEnabled:YES];
+                    }];
+                }
+            }
+            
             // Play / Pause
             // by Liang: Too simple, add a tool to filter out the noise.
             
-
             if (PLAY_MUSCI_SIGNAL == value) {
                 //[musicPlayer play];
                 //[self playPause];

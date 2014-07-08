@@ -67,7 +67,7 @@
     
     // Sort bridges by mac address
     NSArray *sortedKeys = [self.bridgesFound.allKeys sortedArrayUsingSelector:@selector(caseInsensitiveCompare:)];
-    
+
     // Get mac address and ip address of selected bridge
     NSString *mac = [sortedKeys objectAtIndex:indexPath.row];
     NSString *ip = [self.bridgesFound objectForKey:mac];
@@ -75,7 +75,7 @@
     // Update cell
     cell.textLabel.text = mac;
     cell.detailTextLabel.text = ip;
-    
+
     return cell;
 }
 
@@ -96,7 +96,7 @@
     // Get mac address and ip address of selected bridge
     NSString *mac = [sortedKeys objectAtIndex:indexPath.row];
     NSString *ip = [self.bridgesFound objectForKey:mac];
-    
+    NSLog(@"Hellooooooooooooooooo");
     // Inform delegate
     [self.delegate bridgeSelectedWithIpAddress:ip andMacAddress:mac];
 }

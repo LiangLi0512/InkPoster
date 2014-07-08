@@ -53,10 +53,10 @@
     // Create the main view controller in a navigation controller and make the navigation controller the rootviewcontroller of the app
     PHControlLightsViewController *controlLightsViewController = [[PHControlLightsViewController alloc] initWithNibName:@"PHControlLightsViewController" bundle:[NSBundle mainBundle]];
     
-    self.navigationController = [[UINavigationController alloc] initWithRootViewController:controlLightsViewController];
+    //self.navigationController = [[UINavigationController alloc] initWithRootViewController:controlLightsViewController];
     
-    self.window.rootViewController = self.navigationController;
-    [self.window makeKeyAndVisible];
+    //self.window.rootViewController = self.navigationController;
+    //[self.window makeKeyAndVisible];
     
     PHNotificationManager *notificationManager = [PHNotificationManager defaultManager];
     
@@ -96,11 +96,11 @@
     else{
         nibName = @"BLEMainViewController_iPad";
     }
-    //self.mainViewController = [[BLEMainViewController alloc] initWithNibName:nibName bundle:nil];
+    self.mainViewController = [[BLEMainViewController alloc] initWithNibName:nibName bundle:nil];
     
     
-    //self.window.rootViewController = self.mainViewController;
-    //[self.window makeKeyAndVisible];
+    self.window.rootViewController = self.mainViewController;
+    [self.window makeKeyAndVisible];
     return YES;
 }
 
