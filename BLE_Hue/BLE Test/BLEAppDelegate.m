@@ -53,7 +53,7 @@
     // Create the main view controller in a navigation controller and make the navigation controller the rootviewcontroller of the app
     PHControlLightsViewController *controlLightsViewController = [[PHControlLightsViewController alloc] initWithNibName:@"PHControlLightsViewController" bundle:[NSBundle mainBundle]];
     
-    //self.navigationController = [[UINavigationController alloc] initWithRootViewController:controlLightsViewController];
+    self.navigationController = [[UINavigationController alloc] initWithRootViewController:controlLightsViewController];
     
     //self.window.rootViewController = self.navigationController;
     //[self.window makeKeyAndVisible];
@@ -321,7 +321,8 @@
             UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:self.bridgeSelectionViewController];
             navController.modalPresentationStyle = UIModalPresentationFormSheet;
             
-            [self.navigationController presentViewController:navController animated:YES completion:nil];
+            //[self.navigationController presentViewController:navController animated:YES completion:nil];
+            [self.mainViewController presentViewController:navController animated:YES completion:nil];
         }
         else {
             /***************************************************
@@ -352,7 +353,8 @@
     
     // Remove the selection view controller
     self.bridgeSelectionViewController = nil;
-    [self.navigationController dismissViewControllerAnimated:YES completion:nil];
+    //[self.navigationController dismissViewControllerAnimated:YES completion:nil];
+    [self.mainViewController dismissViewControllerAnimated:YES completion:nil];
     
     // Show a connecting view while we try to connect to the bridge
     [self showLoadingViewWithText:NSLocalizedString(@"Connecting...", @"Connecting text")];
@@ -395,7 +397,8 @@
     
     self.pushLinkViewController = [[PHBridgePushLinkViewController alloc] initWithNibName:@"PHBridgePushLinkViewController" bundle:[NSBundle mainBundle] hueSDK:UIAppDelegate.phHueSDK delegate:self];
     
-    [self.navigationController presentViewController:self.pushLinkViewController animated:YES completion:^{
+    // Lei: mainViewController <-> navigationController
+    [self.mainViewController presentViewController:self.pushLinkViewController animated:YES completion:^{
         /***************************************************
          Start the push linking process.
          *****************************************************/
@@ -415,7 +418,8 @@
      *****************************************************/
     
     // Remove pushlink view controller
-    [self.navigationController dismissViewControllerAnimated:YES completion:nil];
+    //[self.navigationController dismissViewControllerAnimated:YES completion:nil];
+    [self.mainViewController dismissViewControllerAnimated:YES completion:nil];
     self.pushLinkViewController = nil;
     
     // Start local heartbeat
@@ -428,7 +432,8 @@
 
 - (void)pushlinkFailed:(PHError *)error {
     // Remove pushlink view controller
-    [self.navigationController dismissViewControllerAnimated:YES completion:nil];
+    //[self.navigationController dismissViewControllerAnimated:YES completion:nil];
+    [self.mainViewController dismissViewControllerAnimated:YES completion:nil];
     self.pushLinkViewController = nil;
     
     // Check which error occured
