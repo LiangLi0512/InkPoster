@@ -489,6 +489,11 @@ NSTimeInterval touchRightTime = 0.0;
         if (_connectionMode == ConnectionModeUART) {
             //send data to UART Controller
             [_uartViewController receiveData:newData];
+            
+            // Convert NSData into int, reference UARTViewController
+            int dataLength = (int)newData.length;
+            NSInteger intValue;
+            [newData getBytes:&intValue length:sizeof(intValue)];
     
             int value = CFSwapInt32BigToHost(*(int*)([newData bytes]));
             NSTimeInterval currentTime = [[NSDate date] timeIntervalSince1970];
