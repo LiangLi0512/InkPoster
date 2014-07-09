@@ -23,11 +23,11 @@
 
 #define SWITCH_MUSIC_INTERVAL 1.0
 #define SWITCH_RESET_INTERVAL 2.0
-const int PLAY_MUSCI_SIGNAL = 822083584;
-const int LEFT_PICK_SIGNAL = 825229312;
-const int MIDDLE_PICK_SIGNAL = 825294848;
-const int RIGHT_PICK_SIGNAL = 825360384;
-const int RANDOM_HUE = 842006528;
+const int PLAY_MUSCI_SIGNAL = 1;
+const int LEFT_PICK_SIGNAL = 10;
+const int MIDDLE_PICK_SIGNAL = 11;
+const int RIGHT_PICK_SIGNAL = 12;
+const int START_HUE = 20;
 
 
 @interface BLEMainViewController ()<UIAlertViewDelegate>{
@@ -495,13 +495,14 @@ NSTimeInterval touchRightTime = 0.0;
         if (_connectionMode == ConnectionModeUART) {
             //send data to UART Controller
             [_uartViewController receiveData:newData];
-    
-            int value = CFSwapInt32BigToHost(*(int*)([newData bytes]));
+            
+            int value =*(int*)([newData bytes]);
+            //int value = CFSwapInt32BigToHost(*(int*)([newData bytes]));
             NSTimeInterval currentTime = [[NSDate date] timeIntervalSince1970];
             NSLog(@"value = %i", value);
             
-            // by Lei Hue
-            if (RANDOM_HUE == value) {
+            // by Lei:   Hue
+            if (START_HUE <= value) {
                 PHBridgeResourcesCache *cache = [PHBridgeResourcesReader readBridgeResourcesCache];
                 id<PHBridgeSendAPI> bridgeSendAPI = [[[PHOverallFactory alloc] init] bridgeSendAPI];
                 
@@ -509,7 +510,7 @@ NSTimeInterval touchRightTime = 0.0;
                     
                     PHLightState *lightState = [[PHLightState alloc] init];
                     
-                    [lightState setHue:[NSNumber numberWithInt:arc4random() % MAX_HUE]];
+                    [lightState setHue:[NSNumber numberWithInt:(value % 400)/400 * MAX_HUE]];
                     [lightState setBrightness:[NSNumber numberWithInt:254]];
                     [lightState setSaturation:[NSNumber numberWithInt:254]];
                     
