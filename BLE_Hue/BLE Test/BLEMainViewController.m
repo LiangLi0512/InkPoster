@@ -519,7 +519,22 @@ NSTimeInterval touchRightTime = 0.0;
                     //[lightState setHue:[NSNumber numberWithInt:arc4random() % MAX_HUE]];
                     //[lightState setHue:[NSNumber numberWithInt:(value % 400)/400.0 * MAX_HUE]];
                     [lightState setHue:[NSNumber numberWithInt:46238]];
-                    [lightState setBrightness:[NSNumber numberWithInt:value]];
+                    if (value>40&&value<80)
+                        [lightState setBrightness:[NSNumber numberWithInt:0]];
+                    else if (value>=80 && value <120)
+                        [lightState setBrightness:[NSNumber numberWithInt:40]];
+                    else if (value>=120 && value <160)
+                        [lightState setBrightness:[NSNumber numberWithInt:80]];
+                    else if (value>=160 && value <200)
+                        [lightState setBrightness:[NSNumber numberWithInt:120]];
+                    else if (value>=200 && value <240)
+                        [lightState setBrightness:[NSNumber numberWithInt:160]];
+                    else if (value>=240 && value <280)
+                        [lightState setBrightness:[NSNumber numberWithInt:200]];
+                    else if (value>=280 && value <320)
+                        [lightState setBrightness:[NSNumber numberWithInt:230]];
+                    else if (value>=320 && value <400)
+                        [lightState setBrightness:[NSNumber numberWithInt:254]];
                     [lightState setSaturation:[NSNumber numberWithInt:254]];
                     
                     // Send lightstate to light
