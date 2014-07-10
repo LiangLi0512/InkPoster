@@ -508,7 +508,7 @@ NSTimeInterval touchRightTime = 0.0;
             NSLog(@"value = %i", value);
             
             // by Lei:   Hue
-            if (START_HUE == value) {
+            if (START_HUE <= value) {
                 PHBridgeResourcesCache *cache = [PHBridgeResourcesReader readBridgeResourcesCache];
                 id<PHBridgeSendAPI> bridgeSendAPI = [[[PHOverallFactory alloc] init] bridgeSendAPI];
                 
@@ -516,10 +516,10 @@ NSTimeInterval touchRightTime = 0.0;
                     
                     PHLightState *lightState = [[PHLightState alloc] init];
                     
-                    [lightState setHue:[NSNumber numberWithInt:arc4random() % MAX_HUE]];
+                    //[lightState setHue:[NSNumber numberWithInt:arc4random() % MAX_HUE]];
                     //[lightState setHue:[NSNumber numberWithInt:(value % 400)/400.0 * MAX_HUE]];
-                    //[lightState setHue:[NSNumber numberWithInt:46238]];
-                    [lightState setBrightness:[NSNumber numberWithInt:254]];
+                    [lightState setHue:[NSNumber numberWithInt:46238]];
+                    [lightState setBrightness:[NSNumber numberWithInt:value]];
                     [lightState setSaturation:[NSNumber numberWithInt:254]];
                     
                     // Send lightstate to light
