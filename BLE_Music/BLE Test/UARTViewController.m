@@ -145,7 +145,7 @@
 - (void)updateConsoleWithIncomingData:(NSData*)newData {
     
     //Write new received data to the console text view
-    
+/*
     //convert data to string & replace characters we can't display
     int dataLength = (int)newData.length;
     uint8_t data[dataLength];
@@ -166,7 +166,11 @@
     NSString *newString = [[NSString alloc]initWithBytes:&data
                                                   length:dataLength
                                                 encoding:NSUTF8StringEncoding];
+*/
     
+    NSInteger intValue;
+    [newData getBytes:&intValue length:sizeof(intValue)];
+    NSString *newString = [NSString stringWithFormat:@"%d", (int)intValue];
     
     UIColor *color = [UIColor redColor];
     NSString *appendString = @"\n"; //each message appears on new line

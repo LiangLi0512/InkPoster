@@ -496,6 +496,7 @@ NSTimeInterval touchRightTime = 0.0;
             [newData getBytes:&intValue length:sizeof(intValue)];
     
             int value = CFSwapInt32BigToHost(*(int*)([newData bytes]));
+            value = intValue;
             NSTimeInterval currentTime = [[NSDate date] timeIntervalSince1970];
             //NSLog(@"value = %i", value);
             // Play / Pause
