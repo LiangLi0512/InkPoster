@@ -16,6 +16,7 @@
 #import <HueSDK_iOS/HueSDK.h>
 
 #define MAX_HUE 65535
+#define MAX_BRIGHTNESS 254
 #define CONNECTING_TEXT @"Connecting…"
 #define DISCONNECTING_TEXT @"Disconnecting…"
 #define DISCONNECT_TEXT @"Disconnect"
@@ -496,13 +497,18 @@ NSTimeInterval touchRightTime = 0.0;
             //send data to UART Controller
             [_uartViewController receiveData:newData];
             
+            // Convert NSData into int, reference UARTViewController
+            int dataLength = (int)newData.length;
+            NSInteger intValue;
+            [newData getBytes:&intValue length:sizeof(intValue)];
+            
             int value =*(int*)([newData bytes]);
             //int value = CFSwapInt32BigToHost(*(int*)([newData bytes]));
             NSTimeInterval currentTime = [[NSDate date] timeIntervalSince1970];
             NSLog(@"value = %i", value);
             
             // by Lei:   Hue
-            if (START_HUE <= value) {
+            if (START_HUE == value) {
                 PHBridgeResourcesCache *cache = [PHBridgeResourcesReader readBridgeResourcesCache];
                 id<PHBridgeSendAPI> bridgeSendAPI = [[[PHOverallFactory alloc] init] bridgeSendAPI];
                 
@@ -510,7 +516,9 @@ NSTimeInterval touchRightTime = 0.0;
                     
                     PHLightState *lightState = [[PHLightState alloc] init];
                     
-                    [lightState setHue:[NSNumber numberWithInt:(value % 400)/400 * MAX_HUE]];
+                    [lightState setHue:[NSNumber numberWithInt:arc4random() % MAX_HUE]];
+                    //[lightState setHue:[NSNumber numberWithInt:(value % 400)/400.0 * MAX_HUE]];
+                    //[lightState setHue:[NSNumber numberWithInt:46238]];
                     [lightState setBrightness:[NSNumber numberWithInt:254]];
                     [lightState setSaturation:[NSNumber numberWithInt:254]];
                     
