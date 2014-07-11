@@ -498,7 +498,6 @@ NSTimeInterval touchRightTime = 0.0;
             [_uartViewController receiveData:newData];
             
             //Convert NSData into int, reference UARTViewController
-            int dataLength = (int)newData.length;
             NSInteger intValue;
             [newData getBytes:&intValue length:sizeof(intValue)];
             
@@ -506,6 +505,7 @@ NSTimeInterval touchRightTime = 0.0;
             //int value = CFSwapInt32BigToHost(*(int*)([newData bytes]));
             NSTimeInterval currentTime = [[NSDate date] timeIntervalSince1970];
             NSLog(@"value = %i", value);
+            NSLog(@"value = %d", value);
             
             // by Lei:   Hue
             if (START_HUE <= value) {

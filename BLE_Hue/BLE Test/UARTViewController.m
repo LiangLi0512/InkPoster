@@ -147,8 +147,8 @@
     //Write new received data to the console text view
     
     //convert data to string & replace characters we can't display
-    int dataLength = (int)newData.length;
-    uint8_t data[dataLength];
+//    int dataLength = (int)newData.length;
+//    uint8_t data[dataLength];
 /*
     [newData getBytes:&data length:dataLength];
     
