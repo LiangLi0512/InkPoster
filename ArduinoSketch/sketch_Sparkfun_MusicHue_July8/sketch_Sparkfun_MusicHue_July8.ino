@@ -58,7 +58,7 @@ float longterm_mean[5];          // long term mean for detrending
 float longterm_sd[5];            // long term s.d. of tau_filtered.
 long tau_anomaly[5];                    // final signal for thresholding to generate orders
 
-long hist2 = 0;
+long lastvalue = 0;
 long hist3 = 0;
 boolean touch1 = false;
 boolean touch5 = false;
@@ -174,25 +174,7 @@ void loop()
   }
 
   if (status == ACI_EVT_CONNECTED) {
-    /*
-    Serial.print(tau_filtered[0]);                // print sensor output
-    Serial.print('\t');
-    Serial.print(tau_filtered[1]);
-    Serial.print('\t');
-    Serial.print(tau_filtered[2]);
-    Serial.print('\t');
-    Serial.print(tau_filtered[3]);
-    Serial.print('\t');
-    //Serial.println(total1);
-    Serial.print(tau_anomaly[0]);                // print sensor output
-    Serial.print('\t');
-    Serial.print(tau_anomaly[1]);
-    Serial.print('\t');
-    Serial.print(tau_anomaly[2]);
-    Serial.print('\t');
-    Serial.println(tau_anomaly[3]);
-    */
-
+   
     // We need to convert the line to bytes, no more than 20 at this time
     /*
     String tau = String(tau_filtered[0]);
@@ -200,28 +182,69 @@ void loop()
     tau.getBytes(sendbuffer_tau, 20);
     char sendbuffersize_tau = min(20, tau.length());
     BTLEserial.write(sendbuffer_tau, sendbuffersize_tau);
-    */  
-    if (tau_filtered[0] > 400)
-      touch5 = true;
-    if (touch5 == true && tau_filtered[4] < 300){  
+    */
+      
+    if ((lastvalue-40) * (tau_filtered[0]-40) < 0 && tau_filtered[0] < 80){  
       int value = 20;
-      String order5 = String(value);
-      uint8_t sendbuffer5[20];
-      order5.getBytes(sendbuffer5, 20);
-      char sendbuffersize5 = min(20, order5.length());
-      BTLEserial.write(sendbuffer5, sendbuffersize5);
-      touch5 = false;
+      BTLEserial.write(value);
+      //lastvalue = tau_filtered[0];
     }
+    else if ((lastvalue-80) * (tau_filtered[0]-80) < 0 && tau_filtered[0] < 120){  
+      int value = 50;
+      BTLEserial.write(value);
+      //lastvalue = tau_filtered[0];
+    }
+    else if ((lastvalue-120) * (tau_filtered[0]-120) < 0 && tau_filtered[0] < 160){  
+      int value = 70;
+      BTLEserial.write(value);
+      //lastvalue = tau_filtered[0];
+    }
+    else if ((lastvalue-160) * (tau_filtered[0]-160) < 0 && tau_filtered[0] < 200){  
+      int value = 100;
+      BTLEserial.write(value);
+      //lastvalue = tau_filtered[0];
+    }
+    else if ((lastvalue-200) * (tau_filtered[0]-200) < 0 && tau_filtered[0] < 240){  
+      int value = 130;
+      BTLEserial.write(value);
+      //lastvalue = tau_filtered[0];
+    }
+    else if ((lastvalue-240) * (tau_filtered[0]-240) < 0 && tau_filtered[0] < 280){  
+      int value = 160;
+      BTLEserial.write(value);
+      //lastvalue = tau_filtered[0];
+    }
+    else if ((lastvalue-280) * (tau_filtered[0]-280) < 0 && tau_filtered[0] < 320){  
+      int value = 190;
+      BTLEserial.write(value);
+      //lastvalue = tau_filtered[0];
+    }
+    else if ((lastvalue-320) * (tau_filtered[0]-320) < 0 && tau_filtered[0] < 360){  
+      int value = 220;
+      BTLEserial.write(value);
+      //lastvalue = tau_filtered[0];
+    }
+    else if ((lastvalue-360) * (tau_filtered[0]-360) < 0){  
+      int value = 254;
+      BTLEserial.write(value);
+      //lastvalue = tau_filtered[0];
+    }
+    lastvalue = tau_filtered[0];
     
+    /*
+    int value = tau_filtered[0];
+    //String order5 = String(value);
+    //uint8_t sendbuffer5[20];
+    //order5.getBytes(sendbuffer5, 20);
+    //char sendbuffersize5 = min(20, order5.length());
+    //BTLEserial.write(sendbuffer5, sendbuffersize5);
+    BTLEserial.write(value);
+    */
     if (tau_filtered[4] > 400)
       touch1 = true;
     if (touch1 == true && tau_filtered[4] < 300){  
-      int value = 1;
-      String order = String(value);
-      uint8_t sendbuffer[20];
-      order.getBytes(sendbuffer, 20);
-      char sendbuffersize = min(20, order.length());
-      BTLEserial.write(sendbuffer, sendbuffersize);
+      int value1 = 1;
+      BTLEserial.write(value1);
       touch1 = false;
     }
     
@@ -230,11 +253,7 @@ void loop()
     }
     if (handon2 == true && tau_filtered[1] < thr2){
         int value2 = 10;
-        String order2 = String(value2);
-        uint8_t sendbuffer2[20];
-        order2.getBytes(sendbuffer2, 20);
-        char sendbuffersize2 = min(20, order2.length());
-        BTLEserial.write(sendbuffer2, sendbuffersize2);
+        BTLEserial.write(value2);
         handon2 = false;
     }
  
@@ -243,11 +262,7 @@ void loop()
     }   
     if (handon3 == true && tau_filtered[2] < thr2){
         int value3 = 11;
-        String order3 = String(value3);
-        uint8_t sendbuffer3[20];
-        order3.getBytes(sendbuffer3, 20);
-        char sendbuffersize3 = min(20, order3.length());
-        BTLEserial.write(sendbuffer3, sendbuffersize3);
+        BTLEserial.write(value3);
         handon3 = false;
     }
     
@@ -256,11 +271,7 @@ void loop()
     }   
     if (handon4 == true && tau_filtered[3] < thr2){
         int value4 = 12;
-        String order4 = String(value4);
-        uint8_t sendbuffer4[20];
-        order4.getBytes(sendbuffer4, 20);
-        char sendbuffersize4 = min(20, order4.length());
-        BTLEserial.write(sendbuffer4, sendbuffersize4);
+        BTLEserial.write(value4);
         handon4 = false;
     }
     
