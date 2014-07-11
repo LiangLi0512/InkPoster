@@ -149,7 +149,7 @@
     //convert data to string & replace characters we can't display
     int dataLength = (int)newData.length;
     uint8_t data[dataLength];
-    
+/*
     [newData getBytes:&data length:dataLength];
     
     for (int i = 0; i<dataLength; i++) {
@@ -166,7 +166,10 @@
     NSString *newString = [[NSString alloc]initWithBytes:&data
                                                   length:dataLength
                                                 encoding:NSUTF8StringEncoding];
-    
+*/
+    NSInteger intValue;
+    [newData getBytes:&intValue length:sizeof(intValue)];
+    NSString *newString = [NSString stringWithFormat:@"%d", (int)intValue];
     
     UIColor *color = [UIColor redColor];
     NSString *appendString = @"\n"; //each message appears on new line

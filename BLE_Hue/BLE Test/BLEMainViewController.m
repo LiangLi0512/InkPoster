@@ -502,7 +502,7 @@ NSTimeInterval touchRightTime = 0.0;
             NSInteger intValue;
             [newData getBytes:&intValue length:sizeof(intValue)];
             
-            int value =*(int*)([newData bytes]);
+            int value =intValue;
             //int value = CFSwapInt32BigToHost(*(int*)([newData bytes]));
             NSTimeInterval currentTime = [[NSDate date] timeIntervalSince1970];
             NSLog(@"value = %i", value);
