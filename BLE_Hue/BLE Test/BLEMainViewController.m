@@ -502,13 +502,13 @@ NSTimeInterval touchRightTime = 0.0;
             NSInteger intValue;
             [newData getBytes:&intValue length:sizeof(intValue)];
             
-            int value =intValue;
+            int value =(int)intValue;
             //int value = CFSwapInt32BigToHost(*(int*)([newData bytes]));
             NSTimeInterval currentTime = [[NSDate date] timeIntervalSince1970];
             NSLog(@"value = %i", value);
             
             // by Lei:   Hue
-            if (START_HUE == value) {
+            if (START_HUE <= value) {
                 PHBridgeResourcesCache *cache = [PHBridgeResourcesReader readBridgeResourcesCache];
                 id<PHBridgeSendAPI> bridgeSendAPI = [[[PHOverallFactory alloc] init] bridgeSendAPI];
                 
