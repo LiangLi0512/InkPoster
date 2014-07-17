@@ -498,48 +498,14 @@ NSTimeInterval touchRightTime = 0.0;
         if (_connectionMode == ConnectionModeUART) {
             //send data to UART Controller
             [_uartViewController receiveData:newData];
-            /*
-            //Convert NSData into int, reference UARTViewController
-            NSInteger intValue;
-            [newData getBytes:&intValue length:sizeof(intValue)];
-            */
-            //int value =(int)intValue;
             int value = *(int*)([newData bytes]);
             //int value = CFSwapInt32BigToHost(*(int*)([newData bytes]));
             NSTimeInterval currentTime = [[NSDate date] timeIntervalSince1970];
             NSLog(@"value = %i", value);
             
-            // by Lei:   Hue
+            // by Lei:   Ads
 
-            if (START_HUE == value) {
-                bri=MIN(touchCount,254);
-                NSLog(@"bri = %i", bri);
-                PHBridgeResourcesCache *cache = [PHBridgeResourcesReader readBridgeResourcesCache];
-                id<PHBridgeSendAPI> bridgeSendAPI = [[[PHOverallFactory alloc] init] bridgeSendAPI];
-                
-                for (PHLight *light in cache.lights.allValues) {
-                    
-                    PHLightState *lightState = [[PHLightState alloc] init];
-                    
-                    //[lightState setHue:[NSNumber numberWithInt:arc4random() % MAX_HUE]];
-                    //[lightState setHue:[NSNumber numberWithInt:(int)value/360.0*MAX_HUE]];
-                    [lightState setHue:[NSNumber numberWithInt:(int)320/360.0*65535]];
-                    [lightState setBrightness:[NSNumber numberWithInt:254-bri]];
-                    [lightState setSaturation:[NSNumber numberWithInt:254]];
-                    
-                    // Send lightstate to light
-                    [bridgeSendAPI updateLightStateForId:light.identifier withLighState:lightState completionHandler:^(NSArray *errors) {
-                        if (errors != nil) {
-                            NSString *message = [NSString stringWithFormat:@"%@: %@", NSLocalizedString(@"Errors", @""), errors != nil ? errors : NSLocalizedString(@"none", @"")];
-                            
-                            NSLog(@"Response: %@",message);
-                        }
-                        
-                        //[self.randomLightsButton setEnabled:YES];
-                    }];
-                }
-                touchCount+=20;
-            }
+            
             
             // Play / Pause
             // by Liang: Too simple, add a tool to filter out the noise.
@@ -604,28 +570,6 @@ NSTimeInterval touchRightTime = 0.0;
             else if (MIDDLE_PICK_SIGNAL == value) {
                 touchMiddleTime = currentTime;
                 touchedMiddle = true;
-                /* Hue:
-                PHBridgeResourcesCache *cache = [PHBridgeResourcesReader readBridgeResourcesCache];
-                id<PHBridgeSendAPI> bridgeSendAPI = [[[PHOverallFactory alloc] init] bridgeSendAPI];
-                
-                for (PHLight *light in cache.lights.allValues) {
-                    
-                    PHLightState *lightState = [[PHLightState alloc] init];
-                    
-                    [lightState setHue:[NSNumber numberWithInt:arc4random() % MAX_HUE]];
-                    [lightState setBrightness:[NSNumber numberWithInt:254]];
-                    [lightState setSaturation:[NSNumber numberWithInt:254]];
-                    
-                    // Send lightstate to light
-                    [bridgeSendAPI updateLightStateForId:light.identifier withLighState:lightState completionHandler:^(NSArray *errors) {
-                        if (errors != nil) {
-                            NSString *message = [NSString stringWithFormat:@"%@: %@", NSLocalizedString(@"Errors", @""), errors != nil ? errors : NSLocalizedString(@"none", @"")];
-                            
-                            NSLog(@"Response: %@",message);
-                        }
-                    }];
-                }
-                /////////////////////*/
             }
             else if (RIGHT_PICK_SIGNAL == value) {
                 touchRightTime = currentTime;
