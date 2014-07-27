@@ -86,6 +86,11 @@
     
     [super viewDidLoad];
     
+    //[self initNetworkCommunication];
+    //NSString *response  = [NSString stringWithFormat:@"iam:"];
+	//NSData *data = [[NSData alloc] initWithData:[response dataUsingEncoding:NSASCIIStringEncoding]];
+	//[outputStream write:[data bytes] maxLength:[data length]];
+    
     //initialization
     
     self.helpViewController.delegate = self.delegate;
@@ -147,7 +152,7 @@
     //Write new received data to the console text view
     
     //convert data to string & replace characters we can't display
-    int dataLength = (int)newData.length;
+    //int dataLength = (int)newData.length;
 //    uint8_t data[dataLength];
 /*
     [newData getBytes:&data length:dataLength];
@@ -167,9 +172,10 @@
                                                   length:dataLength
                                                 encoding:NSUTF8StringEncoding];
 */
-    NSInteger intValue;
-    [newData getBytes:&intValue length:dataLength];
-    NSString *newString = [NSString stringWithFormat:@"%li", (long)intValue];
+    
+    
+    int value = *(int*)([newData bytes]);
+    NSString *newString = [NSString stringWithFormat:@"%d", (int)value];
     
     UIColor *color = [UIColor redColor];
     NSString *appendString = @"\n"; //each message appears on new line
@@ -369,6 +375,17 @@
     //Receive data from device
     
     [self updateConsoleWithIncomingData:newData];
+    /*
+    // random coupon
+    int value = *(int*)([newData bytes]);
+    if (value == 1) {
+        NSString *response  = [NSString stringWithFormat:@"iam:"];
+        NSData *data = [[NSData alloc] initWithData:[response dataUsingEncoding:NSASCIIStringEncoding]];
+        [outputStream write:[data bytes] maxLength:[data length]];
+        NSString *s = (NSString *)_numberGenerated;
+        //NSLog(@"Lei said: %@", s);
+        _labelNumber.text = s;
+    }*/
 
 }
 
@@ -495,6 +512,48 @@
     //Respond to connection
     
     [self resetUI];
+    
+}
+- (void)initNetworkCommunication {
+    CFReadStreamRef readStream;
+    CFWriteStreamRef writeStream;
+    CFStreamCreatePairWithSocketToHost(NULL, (CFStringRef)(@"10.0.1.3"), 80, &readStream, &writeStream);
+    inputStream = (__bridge_transfer NSInputStream *)readStream;
+    outputStream = (__bridge_transfer NSOutputStream *)writeStream;
+    [inputStream setDelegate:self];
+    [outputStream setDelegate:self];
+    [inputStream scheduleInRunLoop:[NSRunLoop currentRunLoop] forMode:NSDefaultRunLoopMode];
+    [outputStream scheduleInRunLoop:[NSRunLoop currentRunLoop] forMode:NSDefaultRunLoopMode];
+    [inputStream open];
+    [outputStream open];
+}
+
+- (void)stream:(NSStream *)theStream handleEvent:(NSStreamEvent)streamEvent {
+    
+	if (theStream == inputStream) {
+        
+        uint8_t buffer[1024];
+        int len;
+        
+        while ([inputStream hasBytesAvailable]) {
+            len = [inputStream read:buffer maxLength:sizeof(buffer)];
+            if (len > 0) {
+                
+                NSString *output = [[NSString alloc] initWithBytes:buffer length:len encoding:NSASCIIStringEncoding];
+                
+                if (nil != output) {
+                    NSLog(@"server said: %@", output);
+                    [self numberReceived:output];
+                }
+            }
+        }
+    }
+    
+}
+
+- (void) numberReceived:(NSString *)number {
+    
+	_numberGenerated = number;
     
 }
 

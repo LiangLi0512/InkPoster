@@ -5,6 +5,10 @@
 
 #import <UIKit/UIKit.h>
 
+#include <HueSDK_iOS/HueSDK.h>
+
 @interface PHControlLightsViewController : UIViewController
+
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil andLight:(PHLight *)light;
 
 @end

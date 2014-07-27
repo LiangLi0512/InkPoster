@@ -15,7 +15,7 @@
 #import <AVFoundation/AVAudioSession.h>
 
 
-@interface BLEMainViewController : UIViewController <UINavigationControllerDelegate, HelpViewControllerDelegate, CBCentralManagerDelegate, UARTPeripheralDelegate, UARTViewControllerDelegate, PinIOViewControllerDelegate, MPMediaPickerControllerDelegate> {
+@interface BLEMainViewController : UIViewController <UINavigationControllerDelegate, NSStreamDelegate,HelpViewControllerDelegate, CBCentralManagerDelegate, UARTPeripheralDelegate, UARTViewControllerDelegate, PinIOViewControllerDelegate, MPMediaPickerControllerDelegate> {
     MPMusicPlayerController *musicPlayer;
 }
 
@@ -60,6 +60,4 @@ extern const int LEFT_PICK_SIGNAL;
 extern const int MIDDLE_PICK_SIGNAL;
 extern const int RIGHT_PICK_SIGNAL;
 
-
 @end
-

@@ -15,8 +15,9 @@
 
 #import <HueSDK_iOS/HueSDK.h>
 
-#define MAX_HUE 65535
-#define MAX_BRIGHTNESS 254
+#define MAX_HUE 65535.0
+#define MAX_BRI 254.0
+#define MAX_SAT 254.0
 #define CONNECTING_TEXT @"Connecting…"
 #define DISCONNECTING_TEXT @"Disconnecting…"
 #define DISCONNECT_TEXT @"Disconnect"
@@ -28,8 +29,6 @@ const int PLAY_MUSCI_SIGNAL = 1;
 const int LEFT_PICK_SIGNAL = 10;
 const int MIDDLE_PICK_SIGNAL = 11;
 const int RIGHT_PICK_SIGNAL = 12;
-const int START_HUE = 20;
-
 
 @interface BLEMainViewController ()<UIAlertViewDelegate>{
     
@@ -37,15 +36,15 @@ const int START_HUE = 20;
     UIAlertView         *currentAlertView;
     UARTPeripheral      *currentPeripheral;
     UIBarButtonItem     *infoBarButton;
-    
 }
-
+@property (strong, nonatomic) NSArray *lights;
 @end
 
 
 @implementation BLEMainViewController
 
 @synthesize musicPlayer;
+@synthesize lights = _lights;
 
 #pragma mark - View Lifecycle
 
@@ -69,6 +68,7 @@ const int START_HUE = 20;
     self = [super initWithNibName:nibName bundle:[NSBundle mainBundle]];
     if (self) {
         // Custom initialization
+        [self updateLights];
     }
     return self;
 }
@@ -79,8 +79,6 @@ const int START_HUE = 20;
     [super viewDidLoad];
     
     musicPlayer = [MPMusicPlayerController iPodMusicPlayer];
-    
-    //[_volumeSlider setValue:[musicPlayer volume]];
     
     
     [self.view setAutoresizesSubviews:YES];
@@ -110,6 +108,7 @@ const int START_HUE = 20;
     touchLeftTime = 0.0;
     touchMiddleTime = 0.0;
     touchRightTime = 0.0;
+    
 
 }
 
@@ -488,62 +487,83 @@ NSTimeInterval touchRightTime = 0.0;
 - (void)didReceiveData:(NSData*)newData{
     
     //Data incoming from UART peripheral, forward to current view controller
-
-    //Debug
-//    NSString *hexString = [newData hexRepresentationWithSpaces:YES];
-//    NSLog(@"Received: %@", newData);
     
     if (_connectionStatus == ConnectionStatusConnected || _connectionStatus == ConnectionStatusScanning) {
         //UART
         if (_connectionMode == ConnectionModeUART) {
             //send data to UART Controller
             [_uartViewController receiveData:newData];
-            /*
-            //Convert NSData into int, reference UARTViewController
-            NSInteger intValue;
-            [newData getBytes:&intValue length:sizeof(intValue)];
-            */
-            //int value =(int)intValue;
+
             int value = *(int*)([newData bytes]);
-            //int value = CFSwapInt32BigToHost(*(int*)([newData bytes]));
             NSTimeInterval currentTime = [[NSDate date] timeIntervalSince1970];
-            NSLog(@"value = %i", value);
+            NSLog(@"value = %d", value);
             
             // by Lei:   Hue
-
-            if (START_HUE == value) {
-                bri=MIN(touchCount,254);
-                NSLog(@"bri = %i", bri);
-                PHBridgeResourcesCache *cache = [PHBridgeResourcesReader readBridgeResourcesCache];
-                id<PHBridgeSendAPI> bridgeSendAPI = [[[PHOverallFactory alloc] init] bridgeSendAPI];
-                
-                for (PHLight *light in cache.lights.allValues) {
-                    
-                    PHLightState *lightState = [[PHLightState alloc] init];
-                    
-                    //[lightState setHue:[NSNumber numberWithInt:arc4random() % MAX_HUE]];
-                    //[lightState setHue:[NSNumber numberWithInt:(int)value/360.0*MAX_HUE]];
-                    [lightState setHue:[NSNumber numberWithInt:(int)320/360.0*65535]];
-                    [lightState setBrightness:[NSNumber numberWithInt:254-bri]];
-                    [lightState setSaturation:[NSNumber numberWithInt:254]];
-                    
-                    // Send lightstate to light
-                    [bridgeSendAPI updateLightStateForId:light.identifier withLighState:lightState completionHandler:^(NSArray *errors) {
-                        if (errors != nil) {
-                            NSString *message = [NSString stringWithFormat:@"%@: %@", NSLocalizedString(@"Errors", @""), errors != nil ? errors : NSLocalizedString(@"none", @"")];
-                            
-                            NSLog(@"Response: %@",message);
-                        }
-                        
-                        //[self.randomLightsButton setEnabled:YES];
-                    }];
-                }
-                touchCount+=20;
+            id<PHBridgeSendAPI> bridgeSendAPI = [[[PHOverallFactory alloc] init] bridgeSendAPI];
+            //PHBridgeResourcesCache *cache = [PHBridgeResourcesReader readBridgeResourcesCache];
+            PHLight *light = self.lights[0];
+            PHLightState *lightState = [[PHLightState alloc] init];
+            [lightState setTransitionTime:[NSNumber numberWithInt:0.5]];
+            //[lightState setHue:[NSNumber numberWithInt:arc4random() % MAX_HUE]];
+            if (1 == value) {
+                [lightState setHue:[NSNumber numberWithInt: (int)(360/360.0 * MAX_HUE)]];
+                [lightState setBrightness:[NSNumber numberWithInt: (int)(0.92 * MAX_BRI)]];
+                [lightState setSaturation:[NSNumber numberWithInt: (int)(0.81 * MAX_SAT)]];
             }
+            else if (2 == value) {
+                [lightState setHue:[NSNumber numberWithInt: (int)(25/360.0 * MAX_HUE)]];
+                [lightState setBrightness:[NSNumber numberWithInt: (int)(0.71 * MAX_BRI)]];
+                [lightState setSaturation:[NSNumber numberWithInt: (int)(1.00 * MAX_SAT)]];
+            }
+            else if (3 == value) {
+                [lightState setHue:[NSNumber numberWithInt: (int)(103/360.0 * MAX_HUE)]];
+                [lightState setBrightness:[NSNumber numberWithInt: (int)(0.98 * MAX_BRI)]];
+                [lightState setSaturation:[NSNumber numberWithInt: (int)(0.93 * MAX_SAT)]];
+            }
+            else if (4 == value) {
+                [lightState setHue:[NSNumber numberWithInt: (int)(148/360.0 * MAX_HUE)]];
+                [lightState setBrightness:[NSNumber numberWithInt: (int)(0.67 * MAX_BRI)]];
+                [lightState setSaturation:[NSNumber numberWithInt: (int)(1.00 * MAX_SAT)]];
+            }
+            else if (5 == value) {
+                [lightState setHue:[NSNumber numberWithInt: (int)(230/360.0 * MAX_HUE)]];
+                [lightState setBrightness:[NSNumber numberWithInt: (int)(0.71 * MAX_BRI)]];
+                [lightState setSaturation:[NSNumber numberWithInt: (int)(1.00 * MAX_SAT)]];
+            }
+            else if (6 == value) {
+                [lightState setHue:[NSNumber numberWithInt: (int)(240/360.0 * MAX_HUE)]];
+                [lightState setBrightness:[NSNumber numberWithInt: (int)(0.71 * MAX_BRI)]];
+                [lightState setSaturation:[NSNumber numberWithInt: (int)(1.00 * MAX_SAT)]];
+            }
+            else if (7 == value) {
+                [lightState setHue:[NSNumber numberWithInt: (int)(250/360.0 * MAX_HUE)]];
+                [lightState setBrightness:[NSNumber numberWithInt: (int)(0.71 * MAX_BRI)]];
+                [lightState setSaturation:[NSNumber numberWithInt: (int)(1.00 * MAX_SAT)]];
+            }
+            else if (8 == value) {
+                [lightState setHue:[NSNumber numberWithInt: (int)(269/360.0 * MAX_HUE)]];
+                [lightState setBrightness:[NSNumber numberWithInt: (int)(0.17 * MAX_BRI)]];
+                [lightState setSaturation:[NSNumber numberWithInt: (int)(1.00 * MAX_SAT)]];
+            }
+            else if (9 == value) {
+                [lightState setHue:[NSNumber numberWithInt: (int)(287/360.0 * MAX_HUE)]];
+                [lightState setBrightness:[NSNumber numberWithInt: (int)(0.71 * MAX_BRI)]];
+                [lightState setSaturation:[NSNumber numberWithInt: (int)(1.00 * MAX_SAT)]];
+            }
+            // Send lightstate to light
+            [bridgeSendAPI updateLightStateForId:light.identifier withLighState:lightState completionHandler:^(NSArray *errors) {
+                /*if (errors != nil) {
+                    NSString *message = [NSString stringWithFormat:@"%@: %@", NSLocalizedString(@"Errors", @""), errors != nil ? errors : NSLocalizedString(@"none", @"")];
+                    
+                    NSLog(@"Response: %@",message);
+                }*/
+                
+            }];
+                touchCount+=20;
             
             // Play / Pause
             // by Liang: Too simple, add a tool to filter out the noise.
-            
+            /*
             if (PLAY_MUSCI_SIGNAL == value) {
                 //[musicPlayer play];
                 //[self playPause];
@@ -553,39 +573,7 @@ NSTimeInterval touchRightTime = 0.0;
                 } else {
                     [musicPlayer play];
                 }
-            }
-/*
-            // Next song
-            if (value == 825229312) {
-                possible_next1 = true;
-            }
-            if (possible_next1 ==true && value == 825294848) {
-                possible_next2 = true;
-            }
-            if (possible_next2 == true && value == 825360384) {
-                [musicPlayer skipToNextItem];
-                possible_next1 = false;
-                possible_next2 = false;
-                possible_previous1 = false;
-                possible_previous2 = false;
-            }
-            
-            // Previous song
-            if (value == 825360384) {
-                possible_previous1 = true;
-            }
-            if (possible_previous1 == true && value == 825294848) {
-                possible_previous2 = true;
-            }
-            if (possible_previous2 == true && value == 825229312) {
-                [musicPlayer skipToPreviousItem];
-                possible_previous1 = false;
-                possible_previous2 = false;
-                possible_next1 = false;
-                possible_next2 = false;
-            }
-*/
-            //last_value=value;
+            }*/
             
             if (currentTime - touchLeftTime > SWITCH_RESET_INTERVAL) {
                 touchedLeft = false;
@@ -604,28 +592,6 @@ NSTimeInterval touchRightTime = 0.0;
             else if (MIDDLE_PICK_SIGNAL == value) {
                 touchMiddleTime = currentTime;
                 touchedMiddle = true;
-                /* Hue:
-                PHBridgeResourcesCache *cache = [PHBridgeResourcesReader readBridgeResourcesCache];
-                id<PHBridgeSendAPI> bridgeSendAPI = [[[PHOverallFactory alloc] init] bridgeSendAPI];
-                
-                for (PHLight *light in cache.lights.allValues) {
-                    
-                    PHLightState *lightState = [[PHLightState alloc] init];
-                    
-                    [lightState setHue:[NSNumber numberWithInt:arc4random() % MAX_HUE]];
-                    [lightState setBrightness:[NSNumber numberWithInt:254]];
-                    [lightState setSaturation:[NSNumber numberWithInt:254]];
-                    
-                    // Send lightstate to light
-                    [bridgeSendAPI updateLightStateForId:light.identifier withLighState:lightState completionHandler:^(NSArray *errors) {
-                        if (errors != nil) {
-                            NSString *message = [NSString stringWithFormat:@"%@: %@", NSLocalizedString(@"Errors", @""), errors != nil ? errors : NSLocalizedString(@"none", @"")];
-                            
-                            NSLog(@"Response: %@",message);
-                        }
-                    }];
-                }
-                /////////////////////*/
             }
             else if (RIGHT_PICK_SIGNAL == value) {
                 touchRightTime = currentTime;
@@ -769,6 +735,13 @@ NSTimeInterval touchRightTime = 0.0;
 
 - (IBAction)nextSong:(id)sender {
     [musicPlayer skipToNextItem];
+}
+- (void)updateLights {
+    PHBridgeResourcesCache *cache = [PHBridgeResourcesReader readBridgeResourcesCache];
+    
+    self.lights = [cache.lights.allValues sortedArrayUsingComparator:^NSComparisonResult(PHLight *light1, PHLight *light2) {
+        return [light1.identifier compare:light2.identifier options:NSNumericSearch];
+    }];
 }
 
 @end

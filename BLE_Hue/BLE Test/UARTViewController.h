@@ -45,6 +45,8 @@ typedef enum {
 //@property (strong, nonatomic) UIWindow *window;
 @property AVAudioPlayer *appSoundPlayer;
 @property NSURL *soundFileURL;
+@property (weak, nonatomic) IBOutlet UILabel *labelNumber;
+@property (nonatomic, strong) NSString *numberGenerated;
 
 - (id)initWithDelegate:(id<UARTViewControllerDelegate>)aDelegate;
 - (IBAction)clearConsole:(id)sender;
@@ -56,3 +58,5 @@ typedef enum {
 - (void)resetUI;
 
 @end
+NSInputStream *inputStream;
+NSOutputStream *outputStream;
